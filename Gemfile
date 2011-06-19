@@ -10,6 +10,9 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # Validate dates, times, and datetimes
 gem 'validates_timeliness', '~> 3.0.2'
 
+# Helper for serving "dynamic static" pages
+gem 'high_voltage', '~> 0.9.2'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
