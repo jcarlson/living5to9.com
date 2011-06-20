@@ -13,6 +13,10 @@ gem 'validates_timeliness', '~> 3.0.2'
 # Helper for serving "dynamic static" pages
 gem 'high_voltage', '~> 0.9.2'
 
+# Handle file uploads
+gem 'rmagick', '~> 2.13.1'
+gem 'carrierwave', '~> 0.5.4'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
