@@ -1,0 +1,15 @@
+# Photo viewer path
+/photos/:id(-:slug)
+
+# Physical photo paths
+/photos/:id/:filename.:format
+/photos/:id/:version/:filename.:format
+
+# Virtual photo paths                           <-- not a requirement at this time, but someday
+/photos/:id/:width.:height.:filename.:format    <-- serve dynamically resized images which are then cached to filesystem
+/photos/:id/:version/:filename.:format
+
+# Photo-of-the-day paths
+# Photos must have been assigned a "date" to qualify for this view
+/dailies/:year/:month                           <-- lightbox-style viewer
+/dailies/:year/:month/:day                      <-- similar to /photos/:id, but with links to next and prev day
