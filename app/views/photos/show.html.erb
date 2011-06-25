@@ -1,0 +1,24 @@
+<div class="content photo">
+    <%= image_tag @photo.image.large.url, :class => "large photo" %>
+    <!--div class="prev">&lt;</div-->
+    <!--div class="next">&gt;</div-->
+    <table>
+        <tr>
+            <th>Shutter</th>
+            <td><%= @photo.shutter_speed %></td>
+        </tr>
+        <tr>
+            <th>Aperture</th>
+            <td>f<%= @photo.aperture %></td>
+        </tr>
+        <tr>
+            <th>Flash</th>
+            <td><%= @photo.flash? ? "Flash" : "No Flash" %></td>
+        </tr>
+        <tr>
+            <th>Focal Length</th>
+            <td><%= @photo.focal_length %>mm</td>
+        </tr>
+    </table>
+    <p><%= @photo.caption %></p>
+</div>

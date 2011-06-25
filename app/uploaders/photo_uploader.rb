@@ -35,7 +35,11 @@ class PhotoUploader < CarrierWave::Uploader::Base
       "uploads/photos/#{model.id}/versions"
     end
 
-    process :resize_to_fill => [640, 1280]
+    # Resize down to viewer's width and max height
+    process :resize_to_fit => [640, 1280]
+
+    # Reduce quality of version for web storage
+    process :quality => [50]
 
   end
 
@@ -50,5 +54,9 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  def quality(q=50)
+    manipulate! {|img| img.write(current_path) {self.quality=q}}
+  end
 
 end
