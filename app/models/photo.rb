@@ -4,11 +4,13 @@ class Photo < ActiveRecord::Base
 
   mount_uploader :image, PhotoUploader
 
-  attr_reader :md
-
   def aperture
-    f = metadata.get_exif_by_entry("FNumber")[0][1]
-    #(Rational(*(f.split('/').map( &:to_i )))).to_f
+    f = exif["FNumber"]
+    (Rational(*(f.split('/').map( &:to_i )))).to_f
+  end
+
+  def aperture?
+    !aperture.nil?
   end
 
   def caption
@@ -16,13 +18,20 @@ class Photo < ActiveRecord::Base
   end
 
   def exif
-    exif = {}
-    metadata.get_exif_by_entry.each {|entry| exif[entry[0]] = entry[1]}
-    exif
+    metadata.get_exif_by_entry.reduce(Hash.new) {|hash, entry| hash[entry[0]] = entry[1]; hash }
   end
 
   def flash?
-    (metadata.get_exif_by_entry("Flash")[0][1].to_i & 1) == 1
+    (exif["Flash"].to_i & 1) == 1
+  end
+
+  def focal_length
+    l = exif["FocalLength"]
+    (Rational(*(l.split('/').map( &:to_i )))).to_i
+  end
+
+  def focal_length?
+    !focal_length.nil?
   end
 
   def image=(file)
@@ -31,18 +40,22 @@ class Photo < ActiveRecord::Base
     # nil out any cached metadata, in case we're updating the image
     @md = nil
     # set the release date based on metadata if release date is blank
-    self.release_date = metadata.get_iptc_dataset Magick::IPTC::Application::Release_Date if self.release_date.blank?
+    self.release_date = metadata.get_iptc_dataset Magick::IPTC::Application::Release_Date if release_date.blank?
   end
 
   def shutter_speed
-    metadata.get_exif_by_entry("ExposureTime")[0][1]
+    exif["ExposureTime"]
+  end
+
+  def shutter_speed?
+    !shutter_speed.nil?
   end
 
   private
 
   def metadata
     if @md.nil?
-      @md = Magick::Image.read(self.image.current_path)[0]
+      @md = Magick::Image.read(image.current_path)[0]
     end
     @md
   end
