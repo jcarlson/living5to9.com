@@ -22,3 +22,6 @@ gem 'carrierwave', '~> 0.5.4'
 
 # Inherited Resources for cleaner controllers
 gem 'inherited_resources', '~> 1.2.2'
+
+# SASS support
+gem 'sass', '~> 3.1.3'
