@@ -28,22 +28,22 @@ class PhotoUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # Create different versions of your uploaded files:
-  version :thumb do
+  # Large format version, suitable for the standard photo viewer page
+  version :large do
 
     def store_dir
       "uploads/photos/#{model.id}/versions"
     end
 
-    process :resize_to_fill => [150, 150]
+    process :resize_to_fill => [640, 1280]
 
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
