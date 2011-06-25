@@ -1,7 +1,12 @@
 class Photo < ActiveRecord::Base
 
-  validates :release_date, :timeliness => {:type => :date}
+  # VALIDATIONS
+  validates :release_date, :timeliness => {:type => :date, :allow_nil => true}
 
+  # SCOPES
+  named_scope :released, :conditions => ["release_date is not null"], :order => "release_date desc"
+
+  # OTHER CONFIGURATION
   mount_uploader :image, PhotoUploader
 
   def aperture
