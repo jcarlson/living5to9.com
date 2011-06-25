@@ -10,9 +10,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
 
-  # Extract metadata as a part of the processing
-  process :extract_metadata
-
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -39,14 +36,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
     end
 
     process :resize_to_fill => [150, 150]
-
-  end
-
-  def extract_metadata
-
-    img = Magick::Image.read(current_path)[0]
-    model.caption = img.get_iptc_dataset Magick::IPTC::Application::Caption if model.caption.blank?
-    model.date = img.get_iptc_dataset Magick::IPTC::Application::Release_Date if model.date.blank?
 
   end
 

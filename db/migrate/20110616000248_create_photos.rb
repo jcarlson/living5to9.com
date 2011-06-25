@@ -1,8 +1,8 @@
 class CreatePhotos < ActiveRecord::Migration
   def self.up
     create_table :photos do |t|
-      t.string :caption
-      t.date :date
+      t.date :release_date
+      t.string :image
 
       t.timestamps
     end
