@@ -19,7 +19,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
     end
 
     # Resize down to viewer's width and max height
-    process :resize_to_fit => [640, 1280]
+    process :resize => [640]
 
     # Reduce quality of version for web storage
     process :quality => [50]
@@ -44,7 +44,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   private
 
-  def quality(q=50)
+  def quality(q)
     manipulate! {|img| img.write(current_path) {self.quality=q}}
   end
 
@@ -52,6 +52,12 @@ class PhotoUploader < CarrierWave::Uploader::Base
     manipulate!(:format => "png") do |img|
       img = img.wet_floor 0.4, 0.7
       img.write(current_path) {self.quality=50}
+    end
+  end
+
+  def resize(width)
+    manipulate! do |img|
+      img.resize_to_fit! width
     end
   end
 
