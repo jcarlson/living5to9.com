@@ -25,3 +25,6 @@ gem 'inherited_resources', '~> 1.2.2'
 
 # SASS support
 gem 'sass', '~> 3.1.3'
+
+# Jquery plugin
+gem 'jquery-rails', '>= 0.2.6'
