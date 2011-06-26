@@ -55,14 +55,30 @@ body {
     }
 
     .photo table {
+        background-color: rgb(0,0,0);
         border: 1px solid rgb(128,128,128);
-        position: absolute;
+        border-collapse: separate;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-spacing: 0;
+        color: rgb(255,255,255);
         font-size: 11px;
-        top: 15px;
+        opacity: 0.65;
+        position: absolute;
         right: 70px;
+        top: 15px;
     }
     .photo table th {
         text-align: left;
+    }
+    .photo table th,
+    .photo table td {
+        padding: 2px 5px;
+    }
+    .photo table tr.title th {
+        border-bottom: 1px solid rgb(128,128,128);
+        text-align: center;
     }
 
     .photo p {

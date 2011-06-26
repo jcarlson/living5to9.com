@@ -2,7 +2,10 @@
     <%= image_tag @photo.image.large.url, :class => "large photo" %>
     <!--div class="prev">&lt;</div-->
     <!--div class="next">&gt;</div-->
-    <table>
+    <table id="details">
+        <tr class="title">
+          <th colspan="2">Details</th>
+        </tr>
         <tr>
             <th>Shutter</th>
             <td><%= @photo.shutter_speed %></td>
@@ -22,3 +25,10 @@
     </table>
     <p><%= @photo.caption %></p>
 </div>
+
+<script>
+  $("#details").hide();
+  $(".content.photo")
+    .mouseenter(function(){$("#details").fadeIn(250);})
+    .mouseleave(function(){$("#details").fadeOut(250);});
+</script>
