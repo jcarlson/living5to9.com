@@ -24,41 +24,37 @@ class PhotoUploader < CarrierWave::Uploader::Base
     # Reduce quality of version for web storage
     process :quality => [50]
 
-    version :reflected do
+    version :reflection do
 
-      # process :reflection
+      process :reflect
 
-      # def filename
-      #   super.chomp(File.extname(super)) + '.png'
-      # end
+      # filename must be mutated to ensure .png extension
+      def full_filename(for_file)
+        super(for_file).chomp(File.extname(super(for_file))) + '.png'
+      end
 
     end
 
   end
 
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg gif png)
   end
 
   private
 
-  def quality(q)
-    manipulate! {|img| img.write(current_path) {self.quality=q}}
+  def quality(q=50)
+    manipulate! {|img| img.write(current_path) {self.quality=q} }
   end
 
-  def reflection
+  def reflect
     manipulate!(:format => "png") do |img|
       img = img.wet_floor 0.4, 0.7
-      img.write(current_path) {self.quality=50}
     end
   end
 
   def resize(width)
-    manipulate! do |img|
-      img.resize_to_fit! width
-    end
+    manipulate! { |img| img.resize_to_fit! width }
   end
 
 end
