@@ -1,6 +1,3 @@
-require 'bundler/capistrano'
-require 'config/deploy/database'
-
 # Application settings
 set :application, "living5to9.com"
 
@@ -36,27 +33,6 @@ set :default_environment, {
 }
 
 # Additional tasks
-namespace :deploy do
-
-  desc "start application server; no-op for Passenger"
-  task :start do ; end
-
-  desc "stop application server; no-op for Passenger"
-  task :stop do ; end
-
-  desc "restart application server"
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{File.join(current_path,'tmp','restart.txt')}"
-  end
-
-  desc "create additional symlinks"
-
-
-end
-
-namespace :assets do
-
-  desc "link temp dir into shared"
-
-end
-
+require 'bundler/capistrano'
+require 'config/deploy/database'
+require 'config/deploy/dreamhost'
