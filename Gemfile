@@ -4,7 +4,7 @@ gem 'rails', '3.0.3'
 
 # Database gems
 group :production do
-  gem 'mysql2' # MySQL in production
+  gem 'mysql2', '~> 0.2' # MySQL in production
 end
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3' # sqlite3 elsewhere; production cannot support sqlite3

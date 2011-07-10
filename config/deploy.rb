@@ -17,10 +17,14 @@ set :use_sudo, false
 # Servers and services
 role :web, "living5to9.com"                          # Your HTTP server, Apache/etc
 role :app, "living5to9.com"                          # This may be the same as your `Web` server
-role :db,  "living5to9.com", :primary => true     # This is where Rails migrations will run
+role :db,  "living5to9.com", :primary => true        # This is where Rails migrations will run
 
 # Additional settings
 ssh_options[:forward_agent] = true
+set :rake, "bundle exec rake"
+set :default_environment, {
+  'PATH' => "~/.gems/bin:$PATH"
+}
 
 # Additional tasks
 namespace :deploy do
@@ -38,20 +42,14 @@ namespace :deploy do
 
 end
 
-namespace :deploy do
-
-  desc "installs Bundler if it is not already installed"
-  task :install_bundler, :roles => :app do
-    sudo "sh -c 'if [ -z `which bundle` ]; then echo Installing Bundler; gem install bundler; fi'"
-  end
-
-  desc "run 'bundle install' to install Bundler's packaged gems for the current deploy"
-  task :bundle_install, :roles => :app do
-    run "cd #{release_path} && bundle install --deployment --without development test"
-  end
-
-end
+#namespace :bundle do
+#
+#  desc "install Bundler's packaged gems"
+#  task :install, :roles => :app do
+#    run "cd #{release_path} && bundle install --deployment --without development test"
+#  end
+#
+#end
 
 # attach tasks to lifecycle
-before "deploy:bundle_install", "deploy:install_bundler"
-after "deploy:update_code", "deploy:bundle_install"
+# after "deploy:update_code", "bundle:install"
