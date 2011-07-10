@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+require 'database'
 
 # Application settings
 set :application, "living5to9.com"
@@ -7,7 +8,7 @@ set :application, "living5to9.com"
 set :scm, :git
 set :repository,  "git@github.com:jcarlson/living5to9.com.git"
 set :deploy_via, :remote_cache
-set :branch, "production"
+set :branch, "master"
 
 # Deployment settings
 set :user, "jcarlson"
@@ -22,6 +23,8 @@ role :db,  "living5to9.com", :primary => true        # This is where Rails migra
 # Additional settings
 ssh_options[:forward_agent] = true
 set :rake, "bundle exec rake"
+
+# Setup environment paths, etc...
 set :default_environment, {
   'HOME' => "/home/jcarlson",
   'PATH' => "$HOME/local/bin:$HOME/.gems/bin:$PATH",
@@ -46,16 +49,14 @@ namespace :deploy do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 
+  desc "create additional symlinks"
+
+
 end
 
-#namespace :bundle do
-#
-#  desc "install Bundler's packaged gems"
-#  task :install, :roles => :app do
-#    run "cd #{release_path} && bundle install --deployment --without development test"
-#  end
-#
-#end
+namespace :assets do
 
-# attach tasks to lifecycle
-# after "deploy:update_code", "bundle:install"
+  desc "link temp dir into shared"
+
+end
+

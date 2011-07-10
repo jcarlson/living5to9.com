@@ -1,0 +1,22 @@
+production:
+  adapter: mysql2
+  encoding: utf8
+  host: #{Capistrano::CLI.ui.ask("Enter database host: ")}
+  port: #{Capistrano::CLI.ui.ask("Enter database port: ")}
+  database: #{Capistrano::CLI.ui.ask("Enter database name: ")}
+  username: #{Capistrano::CLI.ui.ask("Enter database user: ")}
+  password: #{Capistrano::CLI.ui.ask("Enter database password: ")}
+  pool: 5
+  timeout: 5000
+
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000

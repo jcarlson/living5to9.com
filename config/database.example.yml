@@ -1,5 +1,13 @@
 production:
-  # excluded from SCM
+  adapter: mysql2
+  encoding: utf8
+  host: db.example.com
+  port: 3306
+  database: example_db
+  username: example
+  password: secret
+  pool: 5
+  timeout: 5000
 
 development:
   adapter: sqlite3
