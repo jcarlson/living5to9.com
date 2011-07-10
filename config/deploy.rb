@@ -1,5 +1,5 @@
 require 'bundler/capistrano'
-require 'database'
+require 'config/deploy/database'
 
 # Application settings
 set :application, "living5to9.com"
