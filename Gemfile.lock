@@ -93,6 +93,7 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   mysql2 (~> 0.2.0)
+  rack (= 1.2.3)
   rails (= 3.0.3)
   rmagick
   sass

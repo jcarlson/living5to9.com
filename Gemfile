@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
+gem 'rack', '1.2.3' # Dreamhost seems to have a problem with 1.2.1 being the system version
 
 # Database gems
 group :production do
