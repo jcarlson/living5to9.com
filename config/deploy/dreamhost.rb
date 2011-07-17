@@ -17,14 +17,23 @@ Capistrano::Configuration.instance(:must_exist).load do
 
   namespace :dreamhost do
 
-    desc "create shared directories"
+    desc <<-DESC
+      Creates the fog_credentials.yml configuration file in shared path.
+    DESC
     task :setup, :except => { :no_release => true } do
-      run "mkdir -p #{shared_path}/uploads"
+
+      template = File.read fetch(:template_dir, "config/deploy") + '/fog_credentials.yml.erb'
+      config = ERB.new(template)
+
+      run "mkdir -p #{shared_path}/config"
+      put config.result(binding), "#{shared_path}/config/fog_credentials.yml"
     end
 
-    desc "symlink shared directories"
+    desc <<-DESC
+      [internal] Updates the symlink for database.yml file to the just deployed release.
+    DESC
     task :symlink, :except => { :no_release => true } do
-      run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
+      run "ln -nfs #{shared_path}/config/fog_credentials.yml #{release_path}/config/fog_credentials.yml"
     end
 
   end

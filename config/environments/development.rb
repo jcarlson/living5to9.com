@@ -24,3 +24,6 @@ Living5to9Com::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 end
 
+CarrierWave.configure do |config|
+  config.fog_directory  = 'living5to9.local'
+end

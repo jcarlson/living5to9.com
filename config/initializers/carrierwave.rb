@@ -1,3 +1,5 @@
+Fog.credentials_path = Rails.root.join('config/fog_credentials.yml')
+
 CarrierWave.configure do |config|
 
   # use fog as storage mechanism
@@ -5,13 +7,8 @@ CarrierWave.configure do |config|
 
   # fog configuration
   config.fog_credentials = {
-    # AWS settings
-    :provider               => ENV['FOG_PROVIDER'],
-    :aws_access_key_id      => ENV['AWS_ACCESS_KEY'],
-    :aws_secret_access_key  => ENV['AWS_SECRET_KEY'],
-    :region                 => ENV['AWS_REGION']
+    :provider               => 'AWS'
   }
-  config.fog_directory  = ENV['AWS_S3_BUCKET']
 
   # path configuration, suitable for local, dreamhost and heroku
   config.cache_dir      = "#{Rails.root}/tmp/carrierwave"

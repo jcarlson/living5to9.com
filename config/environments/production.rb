@@ -47,3 +47,7 @@ Living5to9Com::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 end
+
+CarrierWave.configure do |config|
+  config.fog_directory  = 'living5to9.com'
+end
