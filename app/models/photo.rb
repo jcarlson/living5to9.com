@@ -1,4 +1,6 @@
 class Photo < ActiveRecord::Base
+  serialize :exif, Hash
+  serialize :iptc, Hash
 
   # VALIDATIONS
   validates :release_date, :timeliness => {:type => :date, :allow_nil => true}
@@ -23,12 +25,7 @@ class Photo < ActiveRecord::Base
 
   # return the IPTC-embedded caption
   def caption
-    metadata.get_iptc_dataset Magick::IPTC::Application::Caption
-  end
-
-  # return a hash of EXIF key/value pairs
-  def exif
-    metadata.get_exif_by_entry.reduce(Hash.new) {|hash, entry| hash[entry[0]] = entry[1]; hash }
+    iptc["Caption"]
   end
 
   # indicate whether the flash was fired
@@ -51,10 +48,17 @@ class Photo < ActiveRecord::Base
   def image=(file)
     # let CarrierWave do its thing
     super
-    # nil out any cached metadata, in case we're updating the image
-    @md = nil
+    img = Magick::Image.read(file)[0]
+    self.exif = img.get_exif_by_entry.reduce(Hash.new) {|hash, entry| hash[entry[0]] = entry[1]; hash }
+    iptc = {}
+    img.each_iptc_dataset do |dataset, datafield|
+      iptc[dataset] = datafield
+    end
+    self.iptc = iptc
+
     # set the release date based on metadata if release date is blank
-    self.release_date = metadata.get_iptc_dataset Magick::IPTC::Application::Release_Date if release_date.blank?
+    self.release_date = iptc["Release_Date"] if release_date.blank?
+
   end
 
   # return the shutter speed as a string, or nil if not present
@@ -67,15 +71,6 @@ class Photo < ActiveRecord::Base
   # indicate if a shutter speed value is present
   def shutter_speed?
     !shutter_speed.nil?
-  end
-
-  private
-
-  def metadata
-    if @md.nil?
-      @md = Magick::Image.read(image.current_path)[0]
-    end
-    @md
   end
 
 end
