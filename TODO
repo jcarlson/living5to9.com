@@ -1,4 +1,13 @@
-####### PATHS TO IMPLEMENT #######
+#### FEATURES TO ADD ##########################################################
+
+* Calendar view of released photos
+* Microblog (tied to Twitter or Facebook? Can be invoked via email...)
+* Standard blog, with formatting and syntax highlighting, for code posts
+* Proper homepage with "recent posts"
+* "Thing of the Day", which could be all the old CDs I've found or some cool
+  website I've stumbled upon
+
+#### PATHS TO IMPLEMENT #######################################################
 
 # Photo viewer path
 /photos/:id(-:slug)
