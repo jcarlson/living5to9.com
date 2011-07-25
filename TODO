@@ -7,6 +7,11 @@
 * "Thing of the Day", which could be all the old CDs I've found or some cool
   website I've stumbled upon
 
+* CarrierWave: should execute remove! on versions before the master
+    https://github.com/jnicklas/carrierwave/issues/408
+* CarrierWave: Fog throws error when trying to delete versions due to dir not empty
+* Return to Fog as local storage provider when possible...
+
 #### PATHS TO IMPLEMENT #######################################################
 
 # Photo viewer path

@@ -25,6 +25,11 @@ Living5to9Com::Application.configure do
 end
 
 CarrierWave.configure do |config|
-  config.fog_directory  = 'assets.living5to9.local'
-  config.fog_host = 'http://assets.living5to9.local.s3.amazonaws.com'
+  config.storage = :file
+  #config.fog_credentials = {
+  #  :provider               => 'local',
+  #  :local_root             => 'public'
+  #}
+  #config.fog_directory  = 'system'
+  #config.fog_host = 'http://assets.living5to9.local.s3.amazonaws.com'
 end
