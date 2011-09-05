@@ -4,4 +4,5 @@ config/database.yml
 config/fog_credentials.yml
 db/*.sqlite3
 log/*.log
+public/system
 tmp
