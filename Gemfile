@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
-#gem 'rack', '1.2.1' # Dreamhost seems to have a problem with 1.2.1 being the system version
 
 # Database gems
 group :production do
-  gem 'mysql2' # MySQL in production
+  gem 'mysql2' # MySQL database for Dreamhost
+  gem 'therubyracer' # JavaScript runtime for Dreamhost
 end
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3' # sqlite3 elsewhere; production cannot support sqlite3
