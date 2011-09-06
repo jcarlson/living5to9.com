@@ -11,7 +11,7 @@ Living5to9Com::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  config.action_view.debug_rjs             = true
+  # config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
@@ -22,6 +22,13 @@ Living5to9Com::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+  
+  # Do not compress assets in development
+  config.assets.compress = false
+  
+  # Expand asset tags for debug-friendly versions
+  config.assets.debug = true
+  
 end
 
 CarrierWave.configure do |config|

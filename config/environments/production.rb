@@ -46,6 +46,16 @@ Living5to9Com::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  # Compress Javascript and CSS files
+  config.assets.compress = true
+  
+  # Fallback to asaset pipeline if a precompiled version is missing
+  config.assets.compile = false
+  
+  # Generate digests for asset URLs
+  config.assets.digest = true
+  
 end
 
 CarrierWave.configure do |config|

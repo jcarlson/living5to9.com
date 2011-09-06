@@ -5,7 +5,7 @@ set :application, "living5to9.com"
 set :scm, :git
 set :repository,  "git@github.com:jcarlson/living5to9.com.git"
 set :deploy_via, :remote_cache
-set :branch, "master"
+set :branch, "rails-3.1"
 
 # Deployment settings
 set :user, "jcarlson"

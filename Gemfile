@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
-gem 'rack', '1.2.1' # Dreamhost seems to have a problem with 1.2.1 being the system version
+gem 'rails', '3.1.0'
+#gem 'rack', '1.2.1' # Dreamhost seems to have a problem with 1.2.1 being the system version
 
 # Database gems
 group :production do
-  gem 'mysql2', '~> 0.2.0' # MySQL in production
+  gem 'mysql2' # MySQL in production
 end
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3' # sqlite3 elsewhere; production cannot support sqlite3
@@ -19,14 +19,18 @@ gem 'high_voltage'
 
 # Handle file uploads
 gem 'rmagick'
-gem 'carrierwave', :git => "git@github.com:jcarlson/carrierwave.git"
+gem 'carrierwave', :git => 'git@github.com:jcarlson/carrierwave.git'
 gem 'fog'
 
 # Inherited Resources for cleaner controllers
 gem 'inherited_resources'
 
-# SASS support
-gem 'sass'
+# Asset pipeline support
+group :assets do
+  gem 'sass-rails', '~> 3.1.0'
+  gem 'coffee-rails', '~> 3.1.0'
+  gem 'uglifier'
+end
 
-# Jquery plugin
+# JQuery plugin
 gem 'jquery-rails'
