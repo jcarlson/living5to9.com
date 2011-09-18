@@ -3,6 +3,7 @@
 
     <head>
       <title>living5to9.com</title>
+      <link href='http://fonts.googleapis.com/css?family=Architects+Daughter|Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
       <%= stylesheet_link_tag :application %>
       <%= javascript_include_tag :application %>
       <%= csrf_meta_tag %>
@@ -10,23 +11,29 @@
 
     <body>
 
-        <div class="zone header">
-            <div class="section">
-                <h1><a href="index.html">living5to9.com</a></h1>
-                <%= render 'layouts/navigation' %>
-            </div>
-        </div>
+        <div class="page<%= ' frontpage' if frontpage? %><%= ' photopage' if photopage? %>">
 
-        <div class="zone body">
-            <div class="section">
-                <%= yield %>
-            </div>
-        </div>
+          <div class="masthead">
 
-        <div class="zone footer">
-            <div class="section">
-                <%= render 'layouts/navigation' %>
+            <h1><a href="index.html">Living5to9.com</a></h1>
+
+            <div class="navigation">
+              <% unless photopage? %>
+                <%= image_tag 'masthead.jpg' %>
+               <% end %>
+              <%= render 'layouts/navigation' %>
             </div>
+
+          </div>
+
+          <div class="content">
+            <%= yield %>
+          </div>
+
+          <div class="footer">
+            <%= render 'layouts/navigation' %>
+          </div>
+
         </div>
 
     </body>

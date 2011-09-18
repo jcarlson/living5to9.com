@@ -11,6 +11,7 @@
     https://github.com/jnicklas/carrierwave/issues/408
 * CarrierWave: Fog throws error when trying to delete versions due to dir not empty
 * Return to Fog as local storage provider when possible...
+* CarrierWave just sucks. Remove it and implement Fog with Asset Pipeline and RMagick
 
 #### PATHS TO IMPLEMENT #######################################################
 

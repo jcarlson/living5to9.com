@@ -14,8 +14,8 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   version :large do
 
-    process :resize => [640]
-    process :quality => [50]
+    process :resize => [1000]
+    process :quality => [65]
 
     def store_dir
       "#{super}/versions"

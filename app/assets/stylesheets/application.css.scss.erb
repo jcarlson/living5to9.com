@@ -1,0 +1,142 @@
+/*
+ *= require_self
+ *= require_tree .
+ */
+
+$dark: #0f0f0f;
+$light: #1d1d1d;
+$text: #dddddd;
+$link: #E4741F;
+
+$page-width: 1000px;
+
+html {
+    color: $text;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0em;
+    word-spacing: 0em;
+    line-height: 1.30;
+}
+
+strong {
+    font-weight: 700;
+}
+
+body {
+    background: $dark;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #66ccff;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.page {
+    margin: 30px auto;
+    width: $page-width;
+
+    .masthead {
+
+        font-family: 'Architects Daughter', cursive;
+
+        h1 {
+            background-color: $light;
+            font-size: 3em;
+            margin: 0;
+            padding: 30px;
+        }
+
+        img {
+            display: block;
+        }
+
+        a {
+            color: $text;
+            &:hover {
+                color: lighten($text, 15%);
+                text-decoration: none;
+            }
+        }
+
+        .navigation {
+
+            overflow: hidden;
+            position: relative;
+
+            ul {
+
+                background: transparent url('<%= asset_path '0.50.png' %>') repeat;
+                bottom: 0;
+                left: 0;
+                margin: 0;
+                padding: 0;
+                position: absolute;
+                right: 0;
+
+                li {
+                    display: inline-block;
+                    font-size: 1.3em;
+                    list-style: none;
+                    margin: 8px 15px;
+                }
+            }
+        }
+    }
+
+    .content {
+
+        background-color: lighten($light, 5%);
+        color: $text;
+        margin: 5px 0;
+        padding: 20px;
+
+        h2 {
+            font-family: 'Architects Daughter', sans-serif;
+            font-size: 1.7em;
+        }
+
+    }
+
+    .footer {
+
+        background-color: $light;
+        font-family: 'Quattrocento Sans', sans-serif;
+
+        ul {
+
+            margin: 0;
+            text-align: center;
+
+            li {
+                display: inline-block;
+                list-style: none;
+                margin: 10px 15px;
+            }
+        }
+
+    }
+}
+
+.photopage {
+    .masthead {
+        .navigation {
+            ul {
+                background: none;
+                position: relative;
+            }
+        }
+    }
+    .content {
+        margin-top: 0;
+        padding: 0;
+    }
+}
+
+

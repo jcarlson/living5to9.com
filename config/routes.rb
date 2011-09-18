@@ -1,10 +1,12 @@
 Living5to9Com::Application.routes.draw do
 
+  
+
   resources :photos, :only => :show do
     get 'latest', :on => :collection
   end
 
-  root :to => 'photos#latest'
+  root :to => 'high_voltage/pages#show', :id => "index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

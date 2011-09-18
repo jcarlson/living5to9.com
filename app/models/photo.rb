@@ -8,6 +8,10 @@ class Photo < ActiveRecord::Base
   # SCOPES
   scope :released, :conditions => ["release_date is not null"], :order => "release_date desc"
 
+  def self.latest
+    released.first
+  end
+
   # OTHER CONFIGURATION
   mount_uploader :image, PhotoUploader
 
