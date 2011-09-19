@@ -12,9 +12,19 @@ class PhotoUploader < CarrierWave::Uploader::Base
     "photos/#{model.id}"
   end
 
+  version :thumbnail do
+
+    process :resize_to_fill => [160,120]
+
+    def store_dir
+      "#{super}/versions"
+    end
+
+  end
+
   version :large do
 
-    process :resize => [1000]
+    process :resize_to_limit => [1000, 750]
     process :quality => [65]
 
     def store_dir

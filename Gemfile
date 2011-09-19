@@ -17,6 +17,9 @@ gem 'validates_timeliness'
 # Helper for serving "dynamic static" pages
 gem 'high_voltage'
 
+# Helper for building tables, especially calendars
+gem 'table_builder'
+
 # Handle file uploads
 gem 'rmagick'
 gem 'carrierwave', :git => 'git@github.com:jcarlson/carrierwave.git'

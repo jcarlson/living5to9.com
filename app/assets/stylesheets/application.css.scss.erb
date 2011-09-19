@@ -1,14 +1,4 @@
-/*
- *= require_self
- *= require_tree .
- */
-
-$dark: #0f0f0f;
-$light: #1d1d1d;
-$text: #dddddd;
-$link: #E4741F;
-
-$page-width: 1000px;
+@import 'definitions';
 
 html {
     color: $text;
@@ -39,12 +29,14 @@ a {
 }
 
 .page {
+
     margin: 30px auto;
     width: $page-width;
 
-    .masthead {
+    .header {
 
         font-family: 'Architects Daughter', cursive;
+        margin-bottom: 5px;
 
         h1 {
             background-color: $light;
@@ -86,28 +78,21 @@ a {
                     list-style: none;
                     margin: 8px 15px;
                 }
+
             }
+
         }
+
     }
 
     .content {
-
-        background-color: lighten($light, 5%);
-        color: $text;
-        margin: 5px 0;
-        padding: 20px;
-
-        h2 {
-            font-family: 'Architects Daughter', sans-serif;
-            font-size: 1.7em;
-        }
-
+        /* Application layout says nothing about content layout or styles */
     }
 
     .footer {
 
         background-color: $light;
-        font-family: 'Quattrocento Sans', sans-serif;
+        margin-top: 5px;
 
         ul {
 
@@ -119,23 +104,9 @@ a {
                 list-style: none;
                 margin: 10px 15px;
             }
+
         }
 
-    }
-}
-
-.photopage {
-    .masthead {
-        .navigation {
-            ul {
-                background: none;
-                position: relative;
-            }
-        }
-    }
-    .content {
-        margin-top: 0;
-        padding: 0;
     }
 }
 

@@ -3,24 +3,26 @@
 
     <head>
       <title>living5to9.com</title>
+      
       <link href='http://fonts.googleapis.com/css?family=Architects+Daughter|Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
       <%= stylesheet_link_tag :application %>
-      <%= javascript_include_tag :application %>
+      <%= stylesheet_link_tag params[:controller] %>
+
       <%= csrf_meta_tag %>
+
     </head>
 
     <body>
 
-        <div class="page<%= ' frontpage' if frontpage? %><%= ' photopage' if photopage? %>">
+        <div class="page <%= page_class %><%= ' frontpage' if frontpage? %>">
 
-          <div class="masthead">
+          <div class="header">
 
-            <h1><a href="index.html">Living5to9.com</a></h1>
+            <h1><%= link_to 'Living5to9.com', root_path %></h1>
 
             <div class="navigation">
-              <% unless photopage? %>
-                <%= image_tag 'masthead.jpg' %>
-               <% end %>
+              <%= image_tag 'masthead.jpg' unless photopage? %>
               <%= render 'layouts/navigation' %>
             </div>
 
@@ -33,6 +35,9 @@
           <div class="footer">
             <%= render 'layouts/navigation' %>
           </div>
+
+          <%= javascript_include_tag :application %>
+          <%= javascript_include_tag params[:controller] %>
 
         </div>
 

@@ -8,4 +8,8 @@ module ApplicationHelper
     params[:controller] == 'photos'
   end
 
+  def page_class
+    params[:controller].gsub("/", "_")
+  end
+
 end

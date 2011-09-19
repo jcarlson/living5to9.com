@@ -1,6 +1,6 @@
 class PhotosController < InheritedResources::Base
 
-  actions :show
+  actions :index, :show
 
   def latest
     @photo = Photo.released.first

@@ -2,7 +2,7 @@ Living5to9Com::Application.routes.draw do
 
   
 
-  resources :photos, :only => :show do
+  resources :photos, :only => [:index, :show] do
     get 'latest', :on => :collection
   end
 

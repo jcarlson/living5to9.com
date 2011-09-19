@@ -1,0 +1,9 @@
+<div class="collection">
+
+  <% photos.each do |photo| %>
+      <%= div_for photo do %>
+        <%= link_to image_tag(photo.image.thumbnail.url), photo %>
+      <% end %>
+  <% end %>
+
+</div>

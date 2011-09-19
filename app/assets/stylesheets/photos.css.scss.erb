@@ -1,0 +1,88 @@
+@import 'definitions';
+
+.photos {
+    .header {
+
+        margin-bottom: 0;
+        
+        .navigation {
+            ul {
+                background: none;
+                position: relative;
+            }
+        }
+    }
+    
+    .content {
+
+        position: relative;
+
+        .collection {
+
+            text-align: center;
+
+            a img {
+                opacity: 0.9;
+                &:hover {
+                    opacity: 1.0;
+                }
+            }
+
+            .photo {
+                //background: black;
+                display: inline-block;
+                height: 120px;
+                margin: 2px 1px;
+                width: 160px;
+            }
+
+        }
+
+        .item {
+
+            .photo {
+
+                text-align: center;
+
+                &.img {
+                    display: block;
+                }
+
+                #details {
+
+                    background: transparent url('<%= asset_path '0.50.png' %>') repeat;
+                    border: 1px solid rgb(128,128,128);
+                    border-collapse: separate;
+                    border-radius: 5px;
+                    -webkit-border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    border-spacing: 0;
+                    color: $text;
+                    font-size: 0.8em;
+                    position: absolute;
+                    right: 30px;
+                    top: 30px;
+
+                    th {
+                        text-align: left;
+                    }
+
+                    th,td {
+                        padding: 2px 5px;
+                    }
+
+                    tr.title th {
+                        border-bottom: 1px solid rgb(128,128,128);
+                        text-align: center;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+

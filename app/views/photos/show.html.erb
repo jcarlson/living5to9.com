@@ -1,49 +1,42 @@
-<div class="content photo">
-  <%= image_tag @photo.image.large.url, :class => "large photo" %>
-  <!--div class="prev">&lt;</div-->
-  <!--div class="next">&gt;</div-->
-  <table id="details">
-    <tr class="title">
-      <th colspan="2">Details</th>
-    </tr>
+<div class="item">
+  <%= div_for @photo do %>
 
-    <% if @photo.shutter_speed? %>
-        <tr>
-          <th>Shutter</th>
-          <td><%= @photo.shutter_speed %></td>
-        </tr>
-    <% end %>
+      <div class="image">
+        <%= image_tag @photo.image.large.url, :class => "large" %>
+        <table id="details">
+            <tr class="title">
+              <th colspan="2">Details</th>
+            </tr>
+            <% if @photo.shutter_speed? %>
+                <tr>
+                  <th>Shutter</th>
+                  <td><%= @photo.shutter_speed %></td>
+                </tr>
+            <% end %>
+            <% if @photo.aperture? %>
+                <tr>
+                  <th>Aperture</th>
+                  <td>f<%= @photo.aperture %></td>
+                </tr>
+            <% end %>
+            <tr>
+              <th>Flash</th>
+              <td><%= @photo.flash? ? "Flash" : "No Flash" %></td>
+            </tr>
+            <% if @photo.focal_length? %>
+                <tr>
+                  <th>Focal Length</th>
+                  <td><%= @photo.focal_length %>mm</td>
+                </tr>
+            <% end %>
+        </table>
+      </div>
 
-    <% if @photo.aperture? %>
-        <tr>
-          <th>Aperture</th>
-          <td>f<%= @photo.aperture %></td>
-        </tr>
-    <% end %>
+      <% if @photo.caption.present? %>
+          <p><%= @photo.caption %></p>
+      <% end %>
 
-    <tr>
-      <th>Flash</th>
-      <td><%= @photo.flash? ? "Flash" : "No Flash" %></td>
-    </tr>
-
-    <% if @photo.focal_length? %>
-        <tr>
-          <th>Focal Length</th>
-          <td><%= @photo.focal_length %>mm</td>
-        </tr>
-    <% end %>
-
-  </table>
-  <p><%= @photo.caption %></p>
+  <% end %>
 </div>
 
-<script>
-    $("#details").hide();
-    $(".content.photo")
-            .mouseenter(function() {
-        $("#details").fadeIn(250);
-    })
-            .mouseleave(function() {
-        $("#details").fadeOut(250);
-    });
-</script>
+

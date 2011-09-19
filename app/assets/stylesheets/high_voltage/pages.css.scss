@@ -1,0 +1,17 @@
+@import 'definitions';
+
+.page {
+    
+    .content {
+
+        background-color: lighten($light, 5%);
+        padding: 20px;
+
+        h2 {
+            font-family: 'Architects Daughter', sans-serif;
+            font-size: 1.7em;
+        }
+
+    }
+
+}
