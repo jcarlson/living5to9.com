@@ -30,8 +30,3 @@ Living5to9Com::Application.configure do
   config.assets.debug = true
   
 end
-
-CarrierWave.configure do |config|
-  config.storage = :file
-  config.file_directory = "system"
-end

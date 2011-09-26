@@ -57,12 +57,3 @@ Living5to9Com::Application.configure do
   config.assets.digest = true
   
 end
-
-CarrierWave.configure do |config|
-  config.storage = :fog
-  config.fog_credentials = {
-    :provider               => 'AWS'
-  }
-  config.fog_directory  = 'assets.living5to9.com'
-  config.fog_host = 'http://assets.living5to9.com'
-end

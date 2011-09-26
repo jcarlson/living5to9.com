@@ -19,7 +19,6 @@ gem 'high_voltage'
 
 # Handle file uploads
 gem 'rmagick'
-gem 'carrierwave', :git => 'git@github.com:jcarlson/carrierwave.git'
 gem 'fog'
 
 # Inherited Resources for cleaner controllers

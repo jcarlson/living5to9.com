@@ -8,9 +8,6 @@ class Photo < ActiveRecord::Base
   # SCOPES
   scope :released, :conditions => ["release_date is not null"], :order => "release_date desc"
 
-  # OTHER CONFIGURATION
-  mount_uploader :image, PhotoUploader
-
   # return the f-stop as a float, or nil if not present
   def aperture
     f = exif["FNumber"]
