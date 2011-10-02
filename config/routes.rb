@@ -1,5 +1,7 @@
 Living5to9Com::Application.routes.draw do
 
+  ActiveAdmin.routes(self)
+
   resources :photos, :only => :show do
     get 'latest', :on => :collection
   end
