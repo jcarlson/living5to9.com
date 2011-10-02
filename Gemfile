@@ -33,3 +33,15 @@ end
 
 # JQuery plugin
 gem 'jquery-rails'
+
+# Testing gems
+group :development, :test do
+  gem 'rspec-rails'
+end
+group :test do
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'guard-rspec'
+  gem 'growl'
+  gem 'launchy'
+end
