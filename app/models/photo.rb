@@ -2,11 +2,28 @@ class Photo < ActiveRecord::Base
   serialize :exif, Hash
   serialize :iptc, Hash
 
-  # VALIDATIONS
-  validates :release_date, :timeliness => {:type => :date, :allow_nil => true}
+  # ATTACHMENTS
+  image_accessor :image do
+    after_assign do |i|
+      # TODO: Register this logic as a Dragonfly analyser
+      img = Magick::Image.read(i.file)[0]
+      self.exif = img.get_exif_by_entry.reduce(Hash.new) {|hash, entry| hash[entry[0]] = entry[1]; hash }
+      iptc = {}
+      img.each_iptc_dataset do |dataset, datafield|
+        iptc[dataset] = datafield
+      end
+      self.iptc = iptc
+
+      # set the release date based on metadata if release date is blank
+      self.release_date = iptc["Release_Date"] if release_date.blank?
+    end
+  end
 
   # SCOPES
   scope :released, :conditions => ["release_date is not null"], :order => "release_date desc"
+
+  # VALIDATIONS
+  validates :release_date, :timeliness => {:type => :date, :allow_nil => true}
 
   # return the f-stop as a float, or nil if not present
   def aperture
@@ -40,22 +57,6 @@ class Photo < ActiveRecord::Base
   # indicate whether a focal length value is present
   def focal_length?
     !focal_length.nil?
-  end
-
-  def image=(file)
-    # let CarrierWave do its thing
-    super
-    img = Magick::Image.read(file)[0]
-    self.exif = img.get_exif_by_entry.reduce(Hash.new) {|hash, entry| hash[entry[0]] = entry[1]; hash }
-    iptc = {}
-    img.each_iptc_dataset do |dataset, datafield|
-      iptc[dataset] = datafield
-    end
-    self.iptc = iptc
-
-    # set the release date based on metadata if release date is blank
-    self.release_date = iptc["Release_Date"] if release_date.blank?
-
   end
 
   # return the shutter speed as a string, or nil if not present
