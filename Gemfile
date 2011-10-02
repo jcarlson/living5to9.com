@@ -18,8 +18,8 @@ gem 'validates_timeliness'
 gem 'high_voltage'
 
 # Handle file uploads
+gem 'dragonfly'
 gem 'rmagick'
-gem 'fog'
 
 # Inherited Resources for cleaner controllers
 gem 'inherited_resources'
