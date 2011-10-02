@@ -5,7 +5,7 @@ class AddMetadataToPhoto < ActiveRecord::Migration
   end
 
   def self.down
-    drop_column :photos, :exif
-    drop_column :photos, :iptc
+    remove_column :photos, :exif
+    remove_column :photos, :iptc
   end
 end
