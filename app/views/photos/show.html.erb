@@ -1,5 +1,5 @@
 <div class="content photo">
-  <%= image_tag @photo.image.url, :class => "large photo" %>
+  <%= image_tag @photo.image.thumb('640x400').url, :class => "large photo" %>
   <!--div class="prev">&lt;</div-->
   <!--div class="next">&gt;</div-->
   <table id="details">
