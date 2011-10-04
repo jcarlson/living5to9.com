@@ -24,15 +24,18 @@ gem 'rmagick'
 # Inherited Resources for cleaner controllers
 gem 'inherited_resources'
 
+# JQuery plugin
+gem 'jquery-rails'
+
+# Active Admin for admin GUI
+gem 'activeadmin'
+gem 'sass-rails', '~> 3.1.0'
+
 # Asset pipeline support
 group :assets do
-  gem 'sass-rails', '~> 3.1.0'
   gem 'coffee-rails', '~> 3.1.0'
   gem 'uglifier'
 end
-
-# JQuery plugin
-gem 'jquery-rails'
 
 # Testing gems
 group :development, :test do

@@ -7,13 +7,13 @@ class Photo < ActiveRecord::Base
     after_assign do |i|
       # TODO: Register this logic as a Dragonfly analyser
       img = Magick::Image.read(i.file)[0]
-      exif = img.get_exif_by_entry.reduce(Hash.new) {|hash, entry| hash[entry[0]] = entry[1]; hash }
+      self.exif = img.get_exif_by_entry.reduce(Hash.new) {|hash, entry| hash[entry[0]] = entry[1]; hash }
       iptc = {}
       img.each_iptc_dataset do |dataset, datafield|
         iptc[dataset] = datafield
       end
 
-      #i.meta.merge! :exif => exif, :iptc => iptc
+      self.iptc = iptc
 
       # set the release date based on metadata if release date is blank
       self.release_date = iptc["Release_Date"] if release_date.blank?
