@@ -10,14 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111002173129) do
+ActiveRecord::Schema.define(:version => 20111003233134) do
 
   create_table "photos", :force => true do |t|
     t.date     "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "exif"
-    t.text     "iptc"
+    t.text     "image_exif"
+    t.text     "image_iptc"
     t.string   "image_uid"
   end
 
