@@ -1,8 +1,7 @@
 <div class="item">
   <%= div_for @photo do %>
-
       <div class="image">
-        <%= image_tag @photo.image.large.url, :class => "large" %>
+        <%= image_tag @photo.image.thumb('640x480').url, :class => "large" %>
         <table id="details">
             <tr class="title">
               <th colspan="2">Details</th>
