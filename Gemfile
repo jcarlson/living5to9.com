@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
+gem 'rack', '1.3.2'
 
 # Database gems
 group :production do
