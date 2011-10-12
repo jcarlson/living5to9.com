@@ -60,6 +60,6 @@ Living5to9Com::Application.configure do
 end
 
 Dragonfly[:images].configure do |c|
-  c.convert_command = "/opt/local/bin/convert"
-  c.identify_command = "/opt/local/bin/identify"
+  c.convert_command = "/home/jcarlson/local/bin/convert"
+  c.identify_command = "/home/jcarlson/local/bin/identify"
 end
