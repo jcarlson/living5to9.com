@@ -15,6 +15,9 @@ module Living5to9Com
     # Enable the asset pipeline
     config.assets.enabled = true
     
+    # Add extra assets to manifest
+    config.assets.precompile += ['photos.*', 'high_voltage/pages.*']
+    
     # Asset version
     config.assets.version = '1.0'
     
