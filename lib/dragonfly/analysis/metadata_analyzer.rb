@@ -20,7 +20,7 @@ module Dragonfly
     private
 
       def image(temp_object)
-        Magick::Image.read(temp_object.path)[0]
+        ::Magick::Image.read(temp_object.path)[0]
       end
 
     end
