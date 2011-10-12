@@ -51,7 +51,8 @@ Living5to9Com::Application.configure do
   config.assets.compress = true
   
   # Fallback to asaset pipeline if a precompiled version is missing
-  config.assets.compile = false
+  # TODO: Set this to false after fixing https://github.com/rails/rails/issues/2765
+  config.assets.compile = true
   
   # Generate digests for asset URLs
   config.assets.digest = true
