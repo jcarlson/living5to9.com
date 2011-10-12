@@ -57,3 +57,8 @@ Living5to9Com::Application.configure do
   config.assets.digest = true
   
 end
+
+Dragonfly[:images].configure do |c|
+  c.convert_command = "/opt/local/bin/convert"
+  c.identify_command = "/opt/local/bin/identify"
+end

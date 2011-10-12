@@ -1,6 +1,3 @@
-# Modify PATH for use on OS X as development server
-ENV["PATH"] = "#{ENV['PATH']}:/opt/local/bin"
-
 Living5to9Com::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -32,4 +29,9 @@ Living5to9Com::Application.configure do
   # Expand asset tags for debug-friendly versions
   config.assets.debug = true
   
+end
+
+Dragonfly[:images].configure do |c|
+  c.convert_command = "/opt/local/bin/convert"
+  c.identify_command = "/opt/local/bin/identify"
 end
