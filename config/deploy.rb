@@ -35,4 +35,5 @@ set :default_environment, {
 # Additional tasks
 require 'bundler/capistrano'
 require 'config/deploy/database'
+require 'config/deploy/dragonfly'
 require 'config/deploy/dreamhost'
