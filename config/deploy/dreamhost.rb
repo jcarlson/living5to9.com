@@ -2,12 +2,6 @@ Capistrano::Configuration.instance(:must_exist).load do
 
   namespace :deploy do
 
-    desc "start application server; no-op for Passenger"
-    task :start do ; end
-
-    desc "stop application server; no-op for Passenger"
-    task :stop do ; end
-
     desc "restart application server"
     task :restart, :roles => :app, :except => { :no_release => true } do
       run "touch #{File.join(current_path,'tmp','restart.txt')}"
