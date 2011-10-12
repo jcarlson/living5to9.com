@@ -23,7 +23,7 @@ gem 'table_builder'
 
 # Handle file uploads
 gem 'dragonfly'
-gem 'rmagick'
+gem 'rmagick', :require => 'RMagick'
 
 # Inherited Resources for cleaner controllers
 gem 'inherited_resources'
