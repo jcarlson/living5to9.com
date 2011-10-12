@@ -16,7 +16,7 @@ module Living5to9Com
     config.assets.enabled = true
     
     # Add extra assets to manifest
-    config.assets.precompile += ['photos.*', 'high_voltage/pages.*']
+    config.assets.precompile += ['photos.*', 'high_voltage/pages.*', 'active_admin.*']
     
     # Asset version
     config.assets.version = '1.0'
