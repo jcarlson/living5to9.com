@@ -59,9 +59,13 @@ Living5to9Com::Application.configure do
   # Generate digests for asset URLs
   config.assets.digest = true
   
-end
+  # Finish configuring environment-specific settings of Dragonfly
+  config.after_initialize do
+    Dragonfly[:images].configure do |c|
+      c.convert_command = "/home/jcarlson/local/bin/convert"
+      c.identify_command = "/home/jcarlson/local/bin/identify"
+      c.composite_command = "/home/jcarlson/local/bin/composite"
+    end
+  end
 
-Dragonfly[:images].configure do |c|
-  c.convert_command = "/home/jcarlson/local/bin/convert"
-  c.identify_command = "/home/jcarlson/local/bin/identify"
 end

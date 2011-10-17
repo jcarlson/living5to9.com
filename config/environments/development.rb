@@ -29,9 +29,13 @@ Living5to9Com::Application.configure do
   # Expand asset tags for debug-friendly versions
   config.assets.debug = true
   
-end
-
-Dragonfly[:images].configure do |c|
-  c.convert_command = "/opt/local/bin/convert"
-  c.identify_command = "/opt/local/bin/identify"
+  # Finish configuring environment-specific settings of Dragonfly
+  config.after_initialize do
+    Dragonfly[:images].configure do |c|
+      c.convert_command = "/opt/local/bin/convert"
+      c.identify_command = "/opt/local/bin/identify"
+      c.composite_command = "/opt/local/bin/composite"
+    end
+  end
+  
 end
