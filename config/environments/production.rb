@@ -33,7 +33,7 @@ Living5to9Com::Application.configure do
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # TODO: Re-enable asset_host once Dreamhost problems are worked out
-  #config.action_controller.asset_host = "http://cdn%d.living5to9.com"
+  config.action_controller.asset_host = "http://cdn%d.living5to9.com"
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
