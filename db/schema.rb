@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011231900) do
+ActiveRecord::Schema.define(:version => 20111018203806) do
 
   create_table "photos", :force => true do |t|
     t.date     "release_date"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(:version => 20111011231900) do
     t.text     "image_iptc"
     t.string   "image_uid"
     t.string   "image_ext"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "publish_date"
+    t.string   "publish_state", :default => "draft"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
