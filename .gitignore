@@ -2,6 +2,7 @@
 .idea/
 .sass-cache/
 config/database.yml
+config/environments/staging.rb
 config/fog_credentials.yml
 db/*.sqlite3
 log/
