@@ -5,9 +5,11 @@ describe Post do
   context "published scope" do
     
     before do
+      Timecop.freeze DateTime.now.beginning_of_day
       @post1 = Factory :post, :title => "No publication date"
       @post2 = Factory :post, :title => "Published yesterday", :publish_date => DateTime.yesterday
       @post3 = Factory :post, :title => "Published tomorrow", :publish_date => DateTime.tomorrow
+      Timecop.return
     end
     
     it "should include only published posts" do
