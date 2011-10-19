@@ -39,6 +39,9 @@ gem 'sass-rails', '~> 3.1.0'
 # Markdown support
 gem 'redcarpet'
 
+# Draper, for model decoration
+gem 'draper'
+
 # Asset pipeline support
 group :assets do
   gem 'coffee-rails', '~> 3.1.0'
