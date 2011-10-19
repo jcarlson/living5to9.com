@@ -14,6 +14,7 @@ GEM
       rack-cache (~> 1.1)
       rack-mount (~> 0.8.2)
       rack-test (~> 0.6.1)
+      sprockets (~> 2.0.0)
       sprockets (~> 2.0.2)
     activeadmin (0.3.2)
       devise (>= 1.1.2)
@@ -50,9 +51,9 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.2.0)
       ffi (~> 1.0.6)
-    coffee-rails (3.1.0)
+    coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
-      railties (~> 3.1.0.rc1)
+      railties (~> 3.1.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -66,7 +67,7 @@ GEM
     dragonfly (0.9.8)
       rack
     erubis (2.7.0)
-    execjs (1.2.4)
+    execjs (1.2.9)
       multi_json (~> 1.0)
     factory_girl (2.0.1)
     factory_girl_rails (1.1.0)
