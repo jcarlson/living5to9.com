@@ -1,8 +1,22 @@
 ActiveAdmin.register Post do
   
+  scope :published
+  
   member_action :publish, :method => :put do
     Post.find(params[:id]).publish!
     redirect_to :back
+  end
+  
+  index do
+    id_column
+    column "Title" do |post|
+      link_to post.title, admin_post_path(post)
+    end
+    column :publish_date
+    column :published do |post|
+      status_tag post.published? ? "Published" : "Draft"
+    end
+    default_actions :name => "Actions"
   end
   
   form do |f|
