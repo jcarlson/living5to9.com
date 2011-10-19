@@ -1,5 +1,9 @@
 ActiveAdmin.register Post do
   
+  member_action :publish, :method => :put do
+    Post.find(params[:id]).publish!
+    redirect_to :back
+  end
   
   form do |f|
     f.inputs "Content" do

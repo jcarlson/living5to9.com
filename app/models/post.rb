@@ -17,6 +17,11 @@ class Post < ActiveRecord::Base
   validates :content, :presence => true
   validates :publish_date, :timeliness => {:type => :datetime}
   
+  def publish!
+    self.published = true
+    self.save!
+  end
+  
 private
 
   def check_publish_date
