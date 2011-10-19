@@ -10,12 +10,11 @@ class Post < ActiveRecord::Base
   
 
   # SCOPES
-  scope :published, lambda { where('publish_date <= ?', DateTime.now)}
+  scope :published, lambda { where('published = ? and publish_date <= ?', true, DateTime.now)}
 
   # VALIDATIONS
   validates :title, :presence => true
   validates :content, :presence => true
-  validates :publish_state, :inclusion => { :in => ['draft', 'published'] }
   validates :publish_date, :timeliness => {:type => :datetime}
   
 private

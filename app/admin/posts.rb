@@ -8,7 +8,7 @@ ActiveAdmin.register Post do
     end
     f.inputs "Publication" do
       f.input :publish_date, :hint => "Leave blank to publish now"
-      f.input :publish_state
+      f.input :published
     end
     f.inputs "Advanced" do
       f.input :slug
