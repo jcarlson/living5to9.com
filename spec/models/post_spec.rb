@@ -9,13 +9,13 @@ describe Post do
       
       # generate some posts
       @post1 = Factory :post, :title => "No publication date", :published => true
-      @post2 = Factory :post, :title => "Published yesterday", :publish_date => DateTime.yesterday, :published => true
-      @post3 = Factory :post, :title => "Published tomorrow", :publish_date => DateTime.tomorrow, :published => true
+      @post2 = Factory :post, :title => "Published yesterday", :publish_at => DateTime.yesterday, :published => true
+      @post3 = Factory :post, :title => "Published tomorrow", :publish_at => DateTime.tomorrow, :published => true
       
       # throw in some extra posts, just to keep it interesting
       Factory :post
-      Factory :post, :publish_date => DateTime.yesterday
-      Factory :post, :publish_date => DateTime.tomorrow
+      Factory :post, :publish_at => DateTime.yesterday
+      Factory :post, :publish_at => DateTime.tomorrow
       
       Timecop.return
     end

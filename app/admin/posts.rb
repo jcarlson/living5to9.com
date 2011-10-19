@@ -12,7 +12,7 @@ ActiveAdmin.register Post do
     column "Title" do |post|
       link_to post.title, admin_post_path(post)
     end
-    column :publish_date
+    column :publish_at
     column :published do |post|
       status_tag post.published? ? "Published" : "Draft"
     end
@@ -26,7 +26,7 @@ ActiveAdmin.register Post do
         :hint => "Content is authored as Markdown"
     end
     f.inputs "Publication" do
-      f.input :publish_date, 
+      f.input :publish_at, 
         :label => "Publication Date", 
         :hint => "Leave blank to publish now"
       f.input :published, 
