@@ -31,7 +31,7 @@ class PostDecorator < ApplicationDecorator
   #   end
   
   def published_link
-    published = model.published?
+    published = model.public?
     link = published ? ("Published") : (h.link_to "Publish!", h.publish_admin_post_path(model), :method => :put)
     link.html_safe
   end
