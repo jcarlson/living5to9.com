@@ -1,16 +1,20 @@
 ActiveAdmin.register Post, :title => :title do
   
+  # Define a filter for 'published' posts
   scope :published
   
+  # Create resource route to publish posts
   member_action :publish, :method => :put do
     Post.find(params[:id]).publish!
     redirect_to :back
   end
   
+  # Add action item to publish posts
   action_item :only => :show do
     link_to "Publish Post", publish_admin_post_path(resource), :method => :put unless resource.published?
   end
   
+  # Customize index page
   index do
     id_column
     column :title do |post|
@@ -23,6 +27,7 @@ ActiveAdmin.register Post, :title => :title do
     default_actions :name => "Actions"
   end
   
+  # Customize show page
   show :title => :title do
     panel "Content" do
       div do
@@ -37,6 +42,7 @@ ActiveAdmin.register Post, :title => :title do
     end
   end
   
+  # Show publication sidebar on show page only
   sidebar "Publication", :only => :show do
     attributes_table_for post do
       row("Status") { status_tag post.published? ? "Published" : "Draft" }
@@ -46,6 +52,7 @@ ActiveAdmin.register Post, :title => :title do
     end
   end
   
+  # Customize form for posts
   form do |f|
     f.inputs "Content" do
       f.input :title
