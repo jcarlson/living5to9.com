@@ -52,9 +52,7 @@ Living5to9Com::Application.configure do
   config.assets.compress = true
   
   # Fallback to asset pipeline if a precompiled version is missing
-  # TODO: Disable live asset compilation after upgrading to Rails 3.1.1+
-  # SEE: https://github.com/rails/rails/issues/2765
-  config.assets.compile = true
+  config.assets.compile = false
   
   # Generate digests for asset URLs
   config.assets.digest = true
