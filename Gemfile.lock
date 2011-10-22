@@ -66,7 +66,7 @@ GEM
     diff-lcs (1.1.2)
     dragonfly (0.9.8)
       rack
-    draper (0.8.1)
+    draper (0.9.3)
     erubis (2.7.0)
     execjs (1.2.9)
       multi_json (~> 1.0)

@@ -1,4 +1,4 @@
-ActiveAdmin.register Post, :title => :title do
+ActiveAdmin.register Post do
   
   # Define a filter for 'published' posts
   scope :published
@@ -77,27 +77,4 @@ ActiveAdmin.register Post, :title => :title do
     f.buttons
   end
   
-  # TODO: Wrap this up in a module of sorts so it works on any ActiveAdmin resource
-  controller do
-    
-    protected
-    
-    def collection
-      get_collection_ivar || set_collection_ivar(decorated_collection(super))
-    end
-    
-    def resource
-      PostDecorator.new(super)
-    end
-    
-    private
-    
-    def decorated_collection(collection)
-      collection.each_with_index { |item,index| collection[index] = PostDecorator.new(item) }
-      collection
-    end
-    
-  end
-  
-
 end

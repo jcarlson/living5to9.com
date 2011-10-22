@@ -1,3 +1,6 @@
+# Extend ActiveAdmin behavior with Draper decoration
+require 'decorated_resource'
+
 ActiveAdmin.setup do |config|
 
   # == Site Title
