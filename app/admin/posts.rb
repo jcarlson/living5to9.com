@@ -31,7 +31,7 @@ ActiveAdmin.register Post, :title => :title do
   show :title => :title do
     panel "Content" do
       div do
-        post.content
+        markdown post.content
       end
     end
     panel "Details" do
