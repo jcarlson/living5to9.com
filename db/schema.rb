@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019180403) do
+ActiveRecord::Schema.define(:version => 20111022175710) do
 
   create_table "photos", :force => true do |t|
     t.date     "release_date"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20111019180403) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "published",  :default => false
+    t.boolean  "public",     :default => false
   end
 
 end

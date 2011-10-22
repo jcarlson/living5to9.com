@@ -10,16 +10,27 @@ class Post < ActiveRecord::Base
   
 
   # SCOPES
-  scope :published, lambda { where('published = ? and publish_at <= ?', true, DateTime.now)}
+  scope :published, lambda { where('public = ? and publish_at <= ?', true, DateTime.now)}
 
   # VALIDATIONS
   validates :title, :presence => true
   validates :content, :presence => true
   validates :publish_at, :timeliness => {:type => :datetime}
   
+  def published
+    public and publish_at < DateTime.now
+  end
+  alias :published? :published
+  
   def publish!
-    self.published = true
+    self.public = true
     self.save!
+  end
+  
+  def status
+    return "Draft" unless public
+    return "Pending" unless published
+    return "Published"
   end
   
 private

@@ -2,15 +2,15 @@ require 'spec_helper'
 
 describe Post do
   
-  context "published scope" do
+  context "public scope" do
     
     before do
       Timecop.freeze DateTime.now.beginning_of_day
       
       # generate some posts
-      @post1 = Factory :post, :title => "No publication date", :published => true
-      @post2 = Factory :post, :title => "Published yesterday", :publish_at => DateTime.yesterday, :published => true
-      @post3 = Factory :post, :title => "Published tomorrow", :publish_at => DateTime.tomorrow, :published => true
+      @post1 = Factory :post, :title => "No publication date", :public => true
+      @post2 = Factory :post, :title => "Published yesterday", :publish_at => DateTime.yesterday, :public => true
+      @post3 = Factory :post, :title => "Published tomorrow", :publish_at => DateTime.tomorrow, :public => true
       
       # throw in some extra posts, just to keep it interesting
       Factory :post

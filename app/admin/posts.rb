@@ -11,7 +11,7 @@ ActiveAdmin.register Post, :title => :title do
   
   # Add action item to publish posts
   action_item :only => :show do
-    link_to "Publish Post", publish_admin_post_path(resource), :method => :put unless resource.published?
+    link_to "Publish Post", publish_admin_post_path(resource), :method => :put unless resource.public?
   end
   
   # Customize index page
@@ -22,7 +22,7 @@ ActiveAdmin.register Post, :title => :title do
     end
     column :date, :publish_at
     column :status do |post|
-      status_tag(post.published? ? "Published" : "Draft")
+      status_tag(post.status)
     end
     default_actions :name => "Actions"
   end
@@ -45,7 +45,7 @@ ActiveAdmin.register Post, :title => :title do
   # Show publication sidebar on show page only
   sidebar "Publication", :only => :show do
     attributes_table_for post do
-      row("Status") { status_tag post.published? ? "Published" : "Draft" }
+      row("Status") { status_tag post.status }
       row("Published") { post.publish_at }
       row("Created") { post.created_at }
       row("Updated") { post.updated_at }
@@ -63,11 +63,11 @@ ActiveAdmin.register Post, :title => :title do
       f.input :publish_at, 
         :label => "Publication Date", 
         :hint => "Leave blank to publish now"
-      f.input :published, 
+      f.input :public, 
         :as => :radio, 
         :label => "Publication Status", 
         :hint => "Set to 'Draft' to keep hidden from public view",
-        :collection => [["Published", true], ["Draft", false]]
+        :collection => [["Public", true], ["Draft", false]]
     end
     f.inputs "Advanced" do
       f.input :slug, 
