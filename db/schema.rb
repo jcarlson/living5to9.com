@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111022175710) do
+ActiveRecord::Schema.define(:version => 20111023012615) do
 
   create_table "photos", :force => true do |t|
     t.date     "release_date"
@@ -30,6 +30,21 @@ ActiveRecord::Schema.define(:version => 20111022175710) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "public",     :default => false
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "content_id"
+    t.string   "content_type"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "term"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

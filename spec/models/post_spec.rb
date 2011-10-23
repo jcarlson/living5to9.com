@@ -34,4 +34,16 @@ describe Post do
     
   end
   
+  context "tags" do
+    
+    #it "should create new teg terms as necessary"
+    
+    #it "should reuse existing tag terms where possible"
+    
+    #it "should remove tag terms no longer in use"
+    
+    #it "should reuse tagging associations where possible"
+    
+  end
+  
 end

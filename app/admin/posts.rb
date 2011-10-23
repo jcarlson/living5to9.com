@@ -34,6 +34,11 @@ ActiveAdmin.register Post do
         markdown post.content
       end
     end
+    panel "Taxonomy" do
+      attributes_table_for post do
+        row(:tags) { post.tag_terms }
+      end
+    end
     panel "Details" do
       attributes_table_for post do
         row(:slug)
@@ -58,6 +63,9 @@ ActiveAdmin.register Post do
       f.input :title
       f.input :content,
         :hint => "Content is authored as Markdown"
+    end
+    f.inputs "Taxonomy" do
+      f.input :tag_terms
     end
     f.inputs "Publication" do
       f.input :publish_at, 
