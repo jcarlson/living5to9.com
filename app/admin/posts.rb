@@ -62,10 +62,11 @@ ActiveAdmin.register Post do
     f.inputs "Content" do
       f.input :title
       f.input :content,
-        :hint => "Content is authored as Markdown"
+        :hint => "Author content in Markdown"
     end
     f.inputs "Taxonomy" do
-      f.input :tag_terms
+      f.input :tag_terms,
+        :hint => "Enter tags as comma-separated list, e.g. 'ruby, rails, code'"
     end
     f.inputs "Publication" do
       f.input :publish_at, 
