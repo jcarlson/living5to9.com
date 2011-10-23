@@ -24,7 +24,6 @@ ActiveAdmin.register Post do
     column :status do |post|
       status_tag(post.status)
     end
-    column :published_link, :sortable => false
     default_actions :name => "Actions"
   end
   
