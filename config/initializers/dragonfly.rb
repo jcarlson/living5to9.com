@@ -2,7 +2,7 @@
 require 'dragonfly/rails/images'
 
 # Add some analysers/processors that I wrote
-Dragonfly[:images].analyser.register(Dragonfly::Analysis::MetadataAnalyzer)
+Dragonfly[:images].analyser.register(MetadataAnalyzer)
 Dragonfly[:images].processor.register(WatermarkProcessor)
 
 Dragonfly[:images].configure do |c|
