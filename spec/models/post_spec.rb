@@ -13,9 +13,9 @@ describe Post do
       @post3 = Factory :post, :title => "Published tomorrow", :publish_at => DateTime.tomorrow, :public => true
       
       # throw in some extra posts, just to keep it interesting
-      Factory :post
-      Factory :post, :publish_at => DateTime.yesterday
-      Factory :post, :publish_at => DateTime.tomorrow
+      Factory :post, :title => "Post1"
+      Factory :post, :title => "Post2", :publish_at => DateTime.yesterday
+      Factory :post, :title => "Post3", :publish_at => DateTime.tomorrow
       
       Timecop.return
     end
@@ -43,6 +43,27 @@ describe Post do
     #it "should remove tag terms no longer in use"
     
     #it "should reuse tagging associations where possible"
+    
+  end
+  
+  context "permalink" do
+    
+    subject { Post.new :title => "Testing with Permalinks", :content => "lorem ipsum" }
+    
+    it "should create a default permalink" do
+      subject.save
+      Permalink.count.should == 1
+    end
+    
+    it "should reject a duplicate default permalink" do
+      post_attributes = { :title => "Original Post", :content => "lorem ipsum" }
+      lambda { Post.create! post_attributes }.should_not raise_error(ActiveRecord::RecordInvalid)
+      lambda { Post.create! post_attributes }.should raise_error(ActiveRecord::RecordInvalid)
+    end
+    
+    #it "should accept a custom permalink"
+    
+    #it "should not accept duplicate permalinks"
     
   end
   

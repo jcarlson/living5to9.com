@@ -1,15 +1,16 @@
 class Post < ActiveRecord::Base
+  include HasPermalink
   
   # ATTRIBUTES
-  
 
   # CALLBACKS
-  before_validation :check_publish_at
 
   # CONFIGURATION
-  has_many :taggings, :as => :content
+  has_many :taggings, :as => :content, :dependent => :destroy
   has_many :tags, :through => :taggings
-
+  
+  accepts_nested_attributes_for :permalink
+  
   # SCOPES
   scope :published, lambda { where('public = ? and publish_at <= ?', true, DateTime.now)}
 
@@ -17,6 +18,10 @@ class Post < ActiveRecord::Base
   validates :title, :presence => true
   validates :content, :presence => true
   validates :publish_at, :timeliness => {:type => :datetime}
+  
+  def publish_at
+    read_attribute(:publish_at) || write_attribute(:publish_at, DateTime.now)
+  end
   
   def published
     public and publish_at < DateTime.now
@@ -45,10 +50,10 @@ class Post < ActiveRecord::Base
     self.tags = terms.map { |term| Tag.find_or_create_by_term(term) }
   end
   
-private
-
-  def check_publish_at
-    self.publish_at = DateTime.now if publish_at.blank?
+protected
+  
+  def default_slug
+    title.present? ? "#{publish_at.year}/#{publish_at.month}/#{title.parameterize}" : nil
   end
   
 end

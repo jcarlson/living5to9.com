@@ -41,8 +41,7 @@ ActiveAdmin.register Post do
     end
     panel "Details" do
       attributes_table_for post do
-        row(:slug)
-        row(:public_url) { nil }
+        row(:public_url) { post.permalink.slug }
       end
     end
   end
@@ -78,9 +77,10 @@ ActiveAdmin.register Post do
         :hint => "Set to 'Draft' to keep hidden from public view",
         :collection => [["Public", true], ["Draft", false]]
     end
-    f.inputs "Advanced" do
-      f.input :slug, 
-        :hint => "Customize the permalink"
+    f.inputs "Permalink" do
+      f.semantic_fields_for :permalink do |p|
+        p.input :slug, :required => false, :hint => "leave blank for default slug"
+      end
     end
     f.buttons
   end
