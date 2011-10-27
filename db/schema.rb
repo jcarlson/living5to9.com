@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111023200847) do
+ActiveRecord::Schema.define(:version => 20111027221854) do
 
   create_table "permalinks", :force => true do |t|
     t.string   "slug"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20111023200847) do
     t.text     "image_iptc"
     t.string   "image_uid"
     t.string   "image_ext"
+    t.string   "image_name"
   end
 
   create_table "posts", :force => true do |t|

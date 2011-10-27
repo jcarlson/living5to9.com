@@ -10,9 +10,6 @@ module HasPermalink
     before_validation :set_default_slug
   end
   
-  module ClassMethods
-  end
-  
   module InstanceMethods
     
     protected

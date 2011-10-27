@@ -1,7 +1,6 @@
 class Photo < ActiveRecord::Base
-  serialize :image_exif, Hash
-  serialize :image_iptc, Hash
-
+  include HasTags
+  
   # ATTRIBUTES
   attr_accessor :update_release_date
 
@@ -10,6 +9,8 @@ class Photo < ActiveRecord::Base
 
   # CONFIGURATION
   image_accessor :image
+  serialize :image_exif, Hash
+  serialize :image_iptc, Hash
 
   # SCOPES
   scope :released, :conditions => ["release_date is not null"], :order => "release_date desc"

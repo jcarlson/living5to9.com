@@ -8,10 +8,29 @@ ActiveAdmin.register Photo do
     column :release_date
   end
   
+  show :title => :image_name do
+    panel "Photo" do
+      image_tag photo.image.thumb('640x480').url
+    end
+  end
+  
+  # Show publication sidebar on show page only
+  sidebar "Photo Details", :only => :show do
+    attributes_table_for photo do
+      row(:id)
+      row(:release_date)
+      row(:tags) { photo.tag_terms }
+    end
+  end
+  
   form do |f|
     f.inputs do
       f.input :release_date, :as => :string
       f.input :image, :as => :file
+    end
+    f.inputs "Taxonomy" do
+      f.input :tag_terms,
+        :hint => "Enter tags as comma-separated list, e.g. 'ruby, rails, code'"
     end
     f.buttons
   end
