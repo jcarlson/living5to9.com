@@ -19,7 +19,16 @@ ActiveAdmin.register Photo do
     attributes_table_for photo do
       row(:id)
       row(:release_date)
+    end
+  end
+  sidebar "Taxonomy", :only => :show do
+    attributes_table_for photo do
       row(:tags) { photo.tag_terms }
+    end
+  end
+  sidebar "Details", :only => :show do
+    attributes_table_for photo do
+      row(:public_url) { photo.permalink.slug }
     end
   end
   

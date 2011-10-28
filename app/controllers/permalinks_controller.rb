@@ -1,5 +1,6 @@
 class PermalinksController < ApplicationController
   
+  # TODO: Need to figure out how to handle slugs with extensions, e.g., 'foo/bar/baz.jpg'
   def show
     # locate content by permalink, raising error if none found
     permalink = Permalink.find_by_slug!(params[:slug])

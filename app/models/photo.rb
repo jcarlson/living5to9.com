@@ -62,6 +62,11 @@ class Photo < ActiveRecord::Base
     !focal_length.nil?
   end
   
+  # return the IPTC headline if present
+  def headline
+    image_iptc["Headline"]
+  end
+  
   # return the IPTC release date, or default to today
   def release_date
     read_attribute(:release_date) || write_attribute(:release_date, default_release_date)
@@ -86,7 +91,8 @@ protected
   end
   
   def default_slug
-    "#{release_date.year}/#{release_date.month}/#{release_date.day}/#{image_name}"
+    slug = headline.present? ? headline : File.basename(image_name, File.extname(image_name))
+    "#{release_date.year}/#{release_date.month}/#{release_date.day}/#{slug.parameterize}"
   end
 
 private
