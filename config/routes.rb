@@ -1,11 +1,18 @@
 Living5to9Com::Application.routes.draw do
 
+  # create admin routes
   ActiveAdmin.routes(self)
+  
+  # define site root
+  root :to => 'high_voltage/pages#show', :id => "index"
+  
+  # map REST-ful resources
   resources :photos, :only => [:index, :show] do
     get 'latest', :on => :collection
   end
-
-  root :to => 'high_voltage/pages#show', :id => "index"
+  
+  # catch-all for permalink rendering
+  get '*slug' => 'permalinks#show', :as => :slug
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
