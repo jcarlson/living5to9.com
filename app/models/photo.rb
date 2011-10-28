@@ -1,4 +1,5 @@
 class Photo < ActiveRecord::Base
+  include HasPermalink
   include HasTags
   
   # ATTRIBUTES
@@ -8,7 +9,10 @@ class Photo < ActiveRecord::Base
   before_validation :auto_update_release_date
 
   # CONFIGURATION
-  image_accessor :image
+  accepts_nested_attributes_for :permalink
+  image_accessor :image do
+    after_assign { self.update_release_date = true }
+  end
   serialize :image_exif, Hash
   serialize :image_iptc, Hash
 
@@ -57,7 +61,12 @@ class Photo < ActiveRecord::Base
   def focal_length?
     !focal_length.nil?
   end
-
+  
+  # return the IPTC release date, or default to today
+  def release_date
+    read_attribute(:release_date) || write_attribute(:release_date, default_release_date)
+  end
+  
   # return the shutter speed as a string, or nil if not present
   def shutter_speed
     ss = image_exif["ExposureTime"]
@@ -68,6 +77,16 @@ class Photo < ActiveRecord::Base
   # indicate if a shutter speed value is present
   def shutter_speed?
     !shutter_speed.nil?
+  end
+  
+protected
+  
+  def default_release_date
+    (image_iptc["Release_Date"] || read_attribute(:release_date) || Date.today).to_date
+  end
+  
+  def default_slug
+    "#{release_date.year}/#{release_date.month}/#{release_date.day}/#{image_name}"
   end
 
 private
@@ -94,8 +113,8 @@ is already blank and #update_release_date is not specified. This preserves the p
 =end
 
   def auto_update_release_date
-    if update_release_date or (update_release_date.nil? and release_date.blank?)
-      self.release_date = image_iptc["Release_Date"]
+    if update_release_date
+      self.release_date = default_release_date
     end
   end
 
