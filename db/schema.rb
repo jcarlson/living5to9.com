@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027221854) do
+ActiveRecord::Schema.define(:version => 20111028213236) do
 
   create_table "permalinks", :force => true do |t|
     t.string   "slug"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(:version => 20111027221854) do
 
   create_table "tags", :force => true do |t|
     t.string   "term"
-    t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

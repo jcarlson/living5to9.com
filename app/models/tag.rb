@@ -1,8 +1,9 @@
 class Tag < ActiveRecord::Base
+  include HasPermalink
+  
   # ATTRIBUTES
   
   # CALLBACKS
-  before_validation :auto_slug
   
   # CONFIGURATION
   
@@ -10,12 +11,11 @@ class Tag < ActiveRecord::Base
   
   # VALIDATIONS
   validates :term, :uniqueness => true, :presence => true
-  validates :slug, :uniqueness => true, :presence => true
   
-  protected
+protected
   
-  def auto_slug
-    self.slug = self.term.parameterize unless term.nil? or slug.present?
+  def default_slug
+    term.present? ? "tags/#{term.parameterize}" : nil
   end
   
 end
