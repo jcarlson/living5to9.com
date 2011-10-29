@@ -12,7 +12,7 @@ Living5to9Com::Application.routes.draw do
   end
   
   # catch-all for permalink rendering
-  get '*slug' => 'permalinks#show', :as => :slug
+  get '*slug' => 'permalinks#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
