@@ -9,7 +9,6 @@ class Photo < ActiveRecord::Base
   before_validation :auto_update_release_date
 
   # CONFIGURATION
-  accepts_nested_attributes_for :permalink
   image_accessor :image do
     after_assign { self.update_release_date = true }
   end
