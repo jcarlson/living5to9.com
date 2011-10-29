@@ -6,13 +6,20 @@ module HasPermalink
     has_one :permalink, :as => :content, :dependent => :destroy, :autosave => true
     delegate :slug, :slug=, :to => :permalink
     
-    # add initialization and validation callbacks
-    # TODO: Optimize this so it's not called unless necessary
-    after_initialize :build_permalink, :unless => proc { permalink.present? }
+    # add validation callbacks
     before_validation :set_default_slug
+
+    # This little syntactic sugar causes permalink to be created lazily precisely
+    # the first time it is accessed. This is necessary because we delegate :slug
+    # to :permalink, and if permalink is nil, things get hairy.
+    redefine_method(:permalink) do |*args|
+      association(:permalink).reader(*args) || build_permalink(*args)
+    end
+
   end
   
   module InstanceMethods
+    
     
     protected
 
