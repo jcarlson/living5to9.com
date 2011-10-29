@@ -4,13 +4,18 @@ class Photo < ActiveRecord::Base
   
   # ATTRIBUTES
   attr_accessor :update_release_date
+  attr_accessor :update_tags
 
   # CALLBACKS
   before_validation :auto_update_release_date
+  before_validation :auto_update_tags
 
   # CONFIGURATION
   image_accessor :image do
-    after_assign { self.update_release_date = true }
+    after_assign do
+      self.update_release_date = true
+      self.update_tags = true
+    end
   end
   serialize :image_exif, Hash
   serialize :image_iptc, Hash
@@ -120,6 +125,13 @@ is already blank and #update_release_date is not specified. This preserves the p
   def auto_update_release_date
     if update_release_date
       self.release_date = default_release_date
+    end
+  end
+  
+  def auto_update_tags
+    if update_tags
+      image_tags = Tag.to_tags(image_iptc["Keywords"])
+      self.tags << image_tags.reject { |tag| self.tags.include? tag }
     end
   end
 
