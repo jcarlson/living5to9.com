@@ -15,5 +15,13 @@ module ApplicationHelper
   def page_class
     params[:controller].gsub("/", "_")
   end
+  
+  def slug_for(content)
+    if content.respond_to?(:slug)
+      "/#{content.slug}"
+    else
+      polymorphic_path(content)
+    end
+  end
 
 end
