@@ -20,11 +20,46 @@ module HasPermalink
     redefine_method(:permalink) do |*args|
       association(:permalink).reader(*args) || build_permalink(*args)
     end
+    
+    # Setup a 'permalink' scope so model classes can find by permalink
+    # find_by_permalink doesn't use this, but it may be useful elsewhere
+    scope :permalink, lambda { |permalink| where(:id => permalink.content_id) }
 
   end
   
-  module InstanceMethods
+  module ClassMethods
     
+    # Finder returning the matching content for a given permalink, or nil if
+    # none found. Notably, the content_type of the given permalink must match
+    # the target model's class
+    def find_by_permalink(permalink)
+      find_by_permalink!(permalink)
+    rescue
+      nil
+    end
+    
+    # Finder returning the matching content for a given permalink. Raises an
+    # ActiveRecord::RecordNotFound error if no match is found or if the 
+    # content_type of the given permalink must match the target model's class
+    def find_by_permalink!(permalink)
+      result = scoped_by_permalink(permalink).first
+      raise ActiveRecord::RecordNotFound.new "Could not find Content for Permalink id=#{permalink.id}" if result.nil?
+      result
+    end
+    
+  protected
+    
+    # Default scope for returning the matching content for a given permalink.
+    # Model classes may override this method to extend the scope query, for
+    # example, to restrict content found by permalink by additional parameters.
+    def scoped_by_permalink(permalink)
+      # scoped_by_id is a 'magic' scope created by missing_method
+      scoped_by_id(permalink.content_id)
+    end
+    
+  end
+  
+  module InstanceMethods
     
     protected
 

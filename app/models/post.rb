@@ -39,6 +39,12 @@ class Post < ActiveRecord::Base
   
 protected
   
+  # Override scoped finder to further restrict returned Posts
+  def self.scoped_by_permalink(permalink)
+    # we're ignoring the super scope so we can start with the :published scope above
+    published.where(:id => permalink.content_id)
+  end
+  
   def default_slug
     title.present? ? "#{publish_at.year}/#{publish_at.month}/#{title.parameterize}" : nil
   end

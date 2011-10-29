@@ -1,11 +1,17 @@
 class PermalinksController < ApplicationController
 
-  before_filter :find_content
-  before_filter :customize_view_path
-
   # TODO: Need to figure out how to handle slugs with extensions, e.g., 'foo/bar/baz.jpg'
   def show
-
+    # find permalink, raising (404) error if none found
+    @permalink = Permalink.find_by_slug!(params[:slug])
+    
+    # find content by permalink, raising (404) if none found
+    @content = content_class.find_by_permalink!(@permalink)
+    @content_type = @permalink.content_type
+    
+    # customize view path based on content_type
+    prepend_view_path "app/views/#{@content_type.pluralize.underscore}"
+    
     # set params[:controller] to model of content
     params[:controller] = @content_type.pluralize.underscore
     
@@ -16,8 +22,8 @@ class PermalinksController < ApplicationController
 
 protected
 
-  def customize_view_path
-    prepend_view_path "app/views/#{@content_type.pluralize.underscore}"
+  def content_class
+    Module.const_get @permalink.content_type
   end
 
   def decorate(content)
@@ -27,13 +33,6 @@ protected
       content
     end
     decorated
-  end
-  
-  def find_content
-    # locate content by permalink, raising (404) error if none found
-    permalink = Permalink.find_by_slug!(params[:slug])
-    @content = permalink.content
-    @content_type = permalink.content_type
   end
   
   def partial
