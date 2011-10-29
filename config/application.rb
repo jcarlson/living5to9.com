@@ -16,7 +16,9 @@ module Living5to9Com
     config.assets.enabled = true
     
     # Add extra assets to manifest
-    config.assets.precompile += ['photos.*', 'high_voltage/pages.*', 'active_admin.*']
+    # Enabling live compile will allow assets not precompiled here to work anyway
+    # For best performance, though, most assets should be named here...
+    config.assets.precompile += ['active_admin.*', 'categories.*', 'high_voltage/pages.*', 'photos.*', 'posts.*']
     
     # Asset version
     config.assets.version = '1.0'

@@ -1,7 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.1'
 gem 'rack', '1.3.2'
+gem 'rake', '0.9.2'
 
 # Database gems
 group :production do
@@ -32,8 +33,14 @@ gem 'inherited_resources'
 gem 'jquery-rails'
 
 # Active Admin for admin GUI
-gem 'activeadmin'
+gem 'activeadmin', '0.3.2'
 gem 'sass-rails', '~> 3.1.0'
+
+# Markdown support
+gem 'redcarpet'
+
+# Draper, for model decoration
+gem 'draper'
 
 # Asset pipeline support
 group :assets do
@@ -51,4 +58,5 @@ group :test do
   gem 'guard-rspec'
   gem 'growl'
   gem 'launchy'
+  gem 'timecop'
 end

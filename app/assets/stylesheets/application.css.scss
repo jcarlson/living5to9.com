@@ -64,7 +64,7 @@ a {
 
             ul {
 
-                background: transparent url('<%= asset_path '0.50.png', 'image' %>') repeat;
+                background: transparent url(image-path('0.50.png')) repeat;
                 bottom: 0;
                 left: 0;
                 margin: 0;
@@ -85,7 +85,7 @@ a {
 
     }
 
-    .content {
+    .body {
         /* Application layout says nothing about content layout or styles */
     }
 

@@ -1,0 +1,39 @@
+<div class="item">
+  <%= div_for photo do %>
+      <div class="image">
+        <%= image_tag photo.image.watermark('640x480').url, :class => "large" %>
+        <table id="details">
+            <tr class="title">
+              <th colspan="2">Details</th>
+            </tr>
+            <% if photo.shutter_speed? %>
+                <tr>
+                  <th>Shutter</th>
+                  <td><%= photo.shutter_speed %></td>
+                </tr>
+            <% end %>
+            <% if photo.aperture? %>
+                <tr>
+                  <th>Aperture</th>
+                  <td>f<%= photo.aperture %></td>
+                </tr>
+            <% end %>
+            <tr>
+              <th>Flash</th>
+              <td><%= photo.flash? ? "Flash" : "No Flash" %></td>
+            </tr>
+            <% if photo.focal_length? %>
+                <tr>
+                  <th>Focal Length</th>
+                  <td><%= photo.focal_length %>mm</td>
+                </tr>
+            <% end %>
+        </table>
+      </div>
+
+      <% if photo.caption.present? %>
+          <p><%= photo.caption %></p>
+      <% end %>
+
+  <% end %>
+</div>

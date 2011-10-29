@@ -1,15 +1,24 @@
 class Photo < ActiveRecord::Base
-  serialize :image_exif, Hash
-  serialize :image_iptc, Hash
-
+  include HasPermalink
+  include HasTags
+  
   # ATTRIBUTES
   attr_accessor :update_release_date
+  attr_accessor :update_tags
 
   # CALLBACKS
   before_validation :auto_update_release_date
+  before_validation :auto_update_tags
 
   # CONFIGURATION
-  image_accessor :image
+  image_accessor :image do
+    after_assign do
+      self.update_release_date = true
+      self.update_tags = true
+    end
+  end
+  serialize :image_exif, Hash
+  serialize :image_iptc, Hash
 
   # SCOPES
   scope :released, :conditions => ["release_date is not null"], :order => "release_date desc"
@@ -56,7 +65,17 @@ class Photo < ActiveRecord::Base
   def focal_length?
     !focal_length.nil?
   end
-
+  
+  # return the IPTC headline if present
+  def headline
+    image_iptc["Headline"]
+  end
+  
+  # return the IPTC release date, or default to today
+  def release_date
+    read_attribute(:release_date) || write_attribute(:release_date, default_release_date)
+  end
+  
   # return the shutter speed as a string, or nil if not present
   def shutter_speed
     ss = image_exif["ExposureTime"]
@@ -67,6 +86,17 @@ class Photo < ActiveRecord::Base
   # indicate if a shutter speed value is present
   def shutter_speed?
     !shutter_speed.nil?
+  end
+  
+protected
+  
+  def default_release_date
+    (image_iptc["Release_Date"] || read_attribute(:release_date) || Date.today).to_date
+  end
+  
+  def default_slug
+    slug = headline.present? ? headline : File.basename(image_name, File.extname(image_name))
+    "#{release_date.year}/#{release_date.month}/#{release_date.day}/#{slug.parameterize}"
   end
 
 private
@@ -93,8 +123,15 @@ is already blank and #update_release_date is not specified. This preserves the p
 =end
 
   def auto_update_release_date
-    if update_release_date or (update_release_date.nil? and release_date.blank?)
-      self.release_date = image_iptc["Release_Date"]
+    if update_release_date
+      self.release_date = default_release_date
+    end
+  end
+  
+  def auto_update_tags
+    if update_tags
+      image_tags = Tag.to_tags(image_iptc["Keywords"])
+      self.tags << image_tags.reject { |tag| self.tags.include? tag }
     end
   end
 

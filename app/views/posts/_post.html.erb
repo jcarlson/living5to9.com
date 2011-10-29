@@ -1,0 +1,17 @@
+<div class="item">
+  <%= div_for post do %>
+    <h2 class="title"><%= post.title %></h2>
+    <p class="published_on">Published on: <%= post.published_on %></p>
+    <div class="content">
+      <%= markdown post.content %>
+    </div>
+    <div class="taxonomy">
+      <p class="tags">
+        <% if post.tags.exists? %>
+          Post was tagged with <%= post.hash_tags %>.
+        <% end %>
+        Last updated <%= post.last_updated %> ago.
+      </p>
+    </div>
+  <% end %>
+</div>

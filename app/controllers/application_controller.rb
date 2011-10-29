@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   def authenticate!
     authenticate_or_request_with_http_digest(Living5to9Com::Admin::Realm) do |username|
       Living5to9Com::Admin::Users[username]
-    end
+    end unless (Rails.env == 'development')
   end
 
 end
