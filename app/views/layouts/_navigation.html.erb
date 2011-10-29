@@ -1,8 +1,12 @@
 <ul>
   <li><%= link_to "Home", root_path %></li>
   <li><%= link_to "Photos", photos_path %></li>
-  <li>Code</li>
-  <li>Life</li>
+  
+  <% # For now, it's fine to just iterate categories and link to them'%>
+  <% Category.all.each do |category| %>
+    <li><%= link_to category.name, slug_path(category) %></li>
+  <% end %>
+  
   <li>About</li>
   <li>Contact</li>
 </ul>

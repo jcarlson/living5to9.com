@@ -36,6 +36,12 @@ gem 'jquery-rails'
 gem 'activeadmin', '0.3.2'
 gem 'sass-rails', '~> 3.1.0'
 
+# Markdown support
+gem 'redcarpet'
+
+# Draper, for model decoration
+gem 'draper'
+
 # Asset pipeline support
 group :assets do
   gem 'coffee-rails', '~> 3.1.0'
@@ -52,4 +58,5 @@ group :test do
   gem 'guard-rspec'
   gem 'growl'
   gem 'launchy'
+  gem 'timecop'
 end
