@@ -7,7 +7,10 @@ class Category < ActiveRecord::Base
 
   # CONFIGURATION
   has_many :categorizations
-  has_many :posts, :through => :categorizations, :source => :content, :source_type => "Post"
+  has_many :posts, 
+    :through => :categorizations, 
+    :source => :content, :source_type => "Post",
+    :conditions => proc { ["public = ? and publish_at <= ?", true, DateTime.now] }
 
   # SCOPES
 
