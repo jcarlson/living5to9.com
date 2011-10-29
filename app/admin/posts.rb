@@ -17,13 +17,12 @@ ActiveAdmin.register Post do
   # Customize index page
   index do
     id_column
-    column :title do |post|
+    column :title, :sortable => :title do |post|
       link_to post.title, admin_post_path(post)
     end
     column :date, :publish_at
-    column :status do |post|
-      status_tag(post.status)
-    end
+    column :categories do |post| post.category_names end
+    column :status do |post| status_tag(post.status) end
     default_actions :name => "Actions"
   end
   
@@ -37,6 +36,7 @@ ActiveAdmin.register Post do
     panel "Taxonomy" do
       attributes_table_for post do
         row(:tags) { post.tag_terms }
+        row(:categories) { post.category_names }
       end
     end
     panel "Details" do
@@ -66,6 +66,7 @@ ActiveAdmin.register Post do
     f.inputs "Taxonomy" do
       f.input :tag_terms,
         :hint => "Enter tags as comma-separated list, e.g. 'ruby, rails, code'"
+      f.input :categories, :as => :check_boxes, :collection => Category.all
     end
     f.inputs "Publication" do
       f.input :publish_at, 

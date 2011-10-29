@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  include HasCategories
   include HasPermalink
   include HasTags
   
