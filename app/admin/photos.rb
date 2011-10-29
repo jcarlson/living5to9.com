@@ -42,7 +42,9 @@ ActiveAdmin.register Photo do
         :hint => "Enter tags as comma-separated list, e.g. 'ruby, rails, code'"
     end
     f.inputs "Permalink" do
-      f.input :slug, :hint => "leave blank for default slug"
+      f.semantic_fields_for :permalink do |p|
+        p.input :slug, :required => false, :hint => "leave blank for default slug"
+      end
     end
     f.buttons
   end

@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
   # CALLBACKS
 
   # CONFIGURATION
+  accepts_nested_attributes_for :permalink
   
   # SCOPES
   scope :published, lambda { where('public = ? and publish_at <= ?', true, DateTime.now)}
