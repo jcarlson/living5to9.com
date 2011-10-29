@@ -7,6 +7,7 @@ module HasPermalink
     delegate :slug, :slug=, :to => :permalink
     
     # add initialization and validation callbacks
+    # TODO: Optimize this so it's not called unless necessary
     after_initialize :build_permalink, :unless => proc { permalink.present? }
     before_validation :set_default_slug
   end
