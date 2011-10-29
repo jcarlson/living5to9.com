@@ -12,6 +12,7 @@ Living5to9Com::Application.routes.draw do
   end
   
   # catch-all for permalink rendering
+  # TODO: Slug route is clobbering high_voltage pages
   get '*slug' => 'permalinks#show'
 
   # The priority is based upon order of creation:
