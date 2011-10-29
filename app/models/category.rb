@@ -6,6 +6,8 @@ class Category < ActiveRecord::Base
   # CALLBACKS
 
   # CONFIGURATION
+  has_many :categorizations
+  has_many :posts, :through => :categorizations, :source => :content, :source_type => "Post"
 
   # SCOPES
 
