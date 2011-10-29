@@ -30,4 +30,16 @@ class PostDecorator < ApplicationDecorator
   #                   :class => 'timestamp'
   #   end
   
+  def hash_tags
+    model.tags.map {|tag| "##{tag.term}"}.join(", ")
+  end
+  
+  def last_updated
+    h.distance_of_time_in_words_to_now model.updated_at
+  end
+  
+  def published_on
+    h.time_tag model.publish_at
+  end
+
 end
