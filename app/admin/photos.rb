@@ -28,7 +28,7 @@ ActiveAdmin.register Photo do
   end
   sidebar "Details", :only => :show do
     attributes_table_for photo do
-      row(:public_url) { link_to photo.permalink.slug, slug_for(photo) }
+      row(:public_url) { link_to photo.permalink.slug, slug_path(photo) }
     end
   end
   

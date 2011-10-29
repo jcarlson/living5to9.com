@@ -41,7 +41,7 @@ ActiveAdmin.register Post do
     end
     panel "Details" do
       attributes_table_for post do
-        row(:public_url) { link_to post.permalink.slug, slug_for(post) }
+        row(:public_url) { link_to post.permalink.slug, slug_path(post) }
       end
     end
   end

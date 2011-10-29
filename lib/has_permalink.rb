@@ -28,27 +28,3 @@ module HasPermalink
   end
   
 end
-
-module SlugRoutes
-  
-  # TODO: Not so sure about this... we're not returning a URL, for one
-  def polymorphic_url(content, options = {})
-    if content.respond_to?(:slug)
-      "/#{content.slug}"
-    else
-      super
-    end
-  end
-  
-end
-
-module ActionDispatch
-  module Routing
-    module UrlFor
-      #include SlugRoutes
-    end
-    module Helpers
-      #include SlugRoutes
-    end
-  end
-end
