@@ -3,7 +3,7 @@ module HasPermalink
   
   included do
     # setup polymorphic association
-    has_one :permalink, :as => :content, :dependent => :destroy
+    has_one :permalink, :as => :content, :dependent => :destroy, :autosave => true
     delegate :slug, :slug=, :to => :permalink
     
     # add initialization and validation callbacks

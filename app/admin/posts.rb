@@ -78,9 +78,7 @@ ActiveAdmin.register Post do
         :collection => [["Public", true], ["Draft", false]]
     end
     f.inputs "Permalink" do
-      f.semantic_fields_for :permalink do |p|
-        p.input :slug, :required => false, :hint => "leave blank for default slug"
-      end
+      f.input :slug, :hint => "leave blank for default slug"
     end
     f.buttons
   end
