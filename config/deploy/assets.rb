@@ -21,6 +21,6 @@ Capistrano::Configuration.instance(:must_exist).load do
 
   after 'deploy:update_code', 'assets:clean'
   after 'deploy:update_code', 'assets:precompile'
-  after 'deploy:update_code', 'assets:upload'
+  after 'deploy:update_code', 'assets:deploy'
 
 end
