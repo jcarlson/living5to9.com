@@ -5,7 +5,8 @@ module ApplicationHelper
   end
   
   def markdown(text)
-    Redcarpet.new(text).to_html.html_safe
+    opts = [:hard_wrap, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
+    Redcarpet.new(text, *opts).to_html.html_safe
   end
 
   def photopage?
