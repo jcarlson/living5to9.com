@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  include HasPermalink
+  include Slug
 
   # ATTRIBUTES
 

@@ -1,5 +1,5 @@
 class Tag < ActiveRecord::Base
-  include HasPermalink
+  include Slug
   
   # ATTRIBUTES
   
