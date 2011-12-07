@@ -39,7 +39,7 @@ class PostDecorator < ApplicationDecorator
   end
   
   def published_on
-    h.time_tag model.publish_at
+    h.time_tag model.publish_at, :pubdate => true, :format => '%B %d, %Y at %l:%M %p'
   end
 
 end

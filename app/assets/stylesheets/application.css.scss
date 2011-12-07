@@ -1,8 +1,9 @@
 @import 'definitions';
+@import 'mixins';
 
 html {
-    color: $text;
-    font-family: 'Lato', sans-serif;
+    color: #333333;
+    font-family: 'Arimo', sans-serif;
     font-weight: 400;
     font-size: 14px;
     letter-spacing: 0em;
@@ -15,13 +16,13 @@ strong {
 }
 
 body {
-    background: $dark;
+    background: #dddddd;
     margin: 0;
     padding: 0;
 }
 
 a {
-    color: #66ccff;
+    color: #3399cc;
     text-decoration: none;
     &:hover {
         text-decoration: underline;
@@ -30,16 +31,22 @@ a {
 
 .page {
 
+    background: #ffffff;
     margin: 30px auto;
     width: $page-width;
+    
+    @include drop-shadow;
+    @include rounded-corners;
 
     .header {
 
+        background-color: $light;
         font-family: 'Architects Daughter', cursive;
         margin-bottom: 5px;
 
+        @include rounded-top;
+
         h1 {
-            background-color: $light;
             font-size: 3em;
             margin: 0;
             padding: 30px;
@@ -68,10 +75,10 @@ a {
                 bottom: 0;
                 left: 0;
                 margin: 0;
-                padding: 0;
+                padding: 0 0 0 35px;
                 position: absolute;
                 right: 0;
-
+                
                 li {
                     display: inline-block;
                     font-size: 1.3em;
@@ -84,19 +91,21 @@ a {
         }
 
     }
-
+    
     .body {
         /* Application layout says nothing about content layout or styles */
     }
 
     .footer {
-
         background-color: $light;
         margin-top: 5px;
+        
+        @include rounded-bottom;
 
         ul {
 
             margin: 0;
+            padding: 0;
             text-align: center;
 
             li {
@@ -108,6 +117,16 @@ a {
         }
 
     }
+    
 }
 
+.copyright {
+  color: #999999;
+  margin: 30px;
+  
+  p {
+    text-align: center;
+  }
+  
+}
 

@@ -1,0 +1,18 @@
+@mixin rounded-top {
+  border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;
+}
+
+@mixin rounded-bottom {
+  border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px;
+}
+
+@mixin rounded-corners {
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+}
+
+@mixin drop-shadow {
+  box-shadow: 0 0 5px #333333;
+}
