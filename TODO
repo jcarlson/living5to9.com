@@ -1,32 +1,24 @@
-#### FEATURES TO ADD ##########################################################
+ADD: Calendar view of released photos
+ADD: Microblog (tied to Twitter or Facebook? Can be invoked via email...)
+ADD: Standard blog, with formatting and syntax highlighting, for code posts
+ADD: Proper homepage with "recent posts"
+ADD: "Thing of the Day", which could be all the old CDs I've found or some cool website I've stumbled upon
+ADD: Autocomplete tag values
+ADD: Syntax highlighting in Markdown with Nokogiri and Albino (see Railscast #272), or google code syntax highlighter?
+ADD: Support Dragonfly images in Markdown with a custom processor or Nokogiri
+ADD: Support multiple flavors of Posts: http://codex.wordpress.org/Post_Formats#Supported_Formats
+BUG: Post publish_at is tracked in UTC?
+REM: Draper is not that effective; should probably remove it; regular old model+helper is probably good enough
+TODO: Store slugs with '/' built in so <%= link_to post.title, post.slug %> works
+TODO: Improve content truncation, or just add a 'synopsis' field
 
-* Calendar view of released photos
-* Microblog (tied to Twitter or Facebook? Can be invoked via email...)
-* Standard blog, with formatting and syntax highlighting, for code posts
-* Proper homepage with "recent posts"
-* "Thing of the Day", which could be all the old CDs I've found or some cool
-  website I've stumbled upon
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* CarrierWave: should execute remove! on versions before the master
-    https://github.com/jnicklas/carrierwave/issues/408
-* CarrierWave: Fog throws error when trying to delete versions due to dir not empty
-* Return to Fog as local storage provider when possible...
-* CarrierWave just sucks. Remove it and implement Fog with Asset Pipeline and RMagick
+NOW: Polish front-end UI to launch-ready state
 
-#### PATHS TO IMPLEMENT #######################################################
+NEXT: Probably need to look at moving from Dreamhost to Heroku, given recurring problems with deployment...
 
-# Photo viewer path
-/photos/:id(-:slug)
+THEN: WYSIWYG editor like Mercury or Aloha
 
-# Physical photo paths
-/photos/:id/:filename.:format
-/photos/:id/:version/:filename.:format
-
-# Virtual photo paths                           <-- not a requirement at this time, but someday
-/photos/:id/:width.:height.:filename.:format    <-- serve dynamically resized images which are then cached to filesystem
-/photos/:id/:version/:filename.:format
-
-# Photo-of-the-day paths
-# Photos must have been assigned a "date" to qualify for this view
-/dailies/:year/:month                           <-- lightbox-style viewer
-/dailies/:year/:month/:day                      <-- similar to /photos/:id, but with links to next and prev day
+LATER: TextMate supports XML-RPC blog writing? Egads! Can Rails support this?
+LATER: Look again at Typo and see what it offers

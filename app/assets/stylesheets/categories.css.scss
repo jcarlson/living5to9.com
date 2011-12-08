@@ -1,0 +1,33 @@
+@import 'definitions';
+
+.categories {
+  
+  .post {
+    padding: 50px;
+    
+    h2.title {
+      font-size: 2.2em;
+      margin: 0;
+    }
+
+    p.published_on {
+      color: #999999;
+      float: left;
+      margin-top: 0;
+    }
+
+    .content {
+      clear: both;
+      h1, h2, h3, h4, h5, h6 { font-size: 1.0em; }
+    }
+  }
+  
+  hr {
+    background: #cccccc;
+    border: none;
+    height: 1px;
+    margin: 0 auto;
+    width: 50%;
+  }
+  
+}

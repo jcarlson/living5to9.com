@@ -9,7 +9,7 @@ set :branch, "master"
 
 # Deployment settings
 set :user, "jcarlson"
-set :deploy_to, "/home/jcarlson/living5to9.com"
+set :deploy_to, "/home/jcarlson/rails.living5to9.com"
 set :use_sudo, false
 
 # Servers and services

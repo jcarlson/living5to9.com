@@ -1,5 +1,9 @@
 <div class="item">
   <%= div_for post do %>
-    <h2><%= link_to post.title, slug_path(post) %></h2>
+    <h2 class="title"><%= link_to post.title, slug_path(post) %></h2>
+    <p class="published_on"> Published on <%= time_tag post.publish_at, :pubdate => true, :format => '%B %d, %Y at %l:%M %p' %></p>
+    <div class="content">
+      <%= markdown truncate(post.content, :length => 750, :separator => "\n", :omission => link_to("Read more...", slug_path(post)) ) %>
+    </div>
   <% end %>
 </div>

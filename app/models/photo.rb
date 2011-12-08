@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  include HasPermalink
+  include Slug
   include HasTags
   
   # ATTRIBUTES

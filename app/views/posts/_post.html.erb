@@ -1,7 +1,7 @@
 <div class="item">
   <%= div_for post do %>
     <h2 class="title"><%= post.title %></h2>
-    <p class="published_on">Published on: <%= post.published_on %></p>
+    <p class="published_on"> Published on <%= time_tag post.publish_at, :pubdate => true, :format => '%B %d, %Y at %l:%M %p' %></p>
     <div class="content">
       <%= markdown post.content %>
     </div>

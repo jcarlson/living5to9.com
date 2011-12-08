@@ -2,7 +2,7 @@
 
   <% photos.each do |photo| %>
       <%= div_for photo do %>
-        <%= link_to image_tag(photo.image.thumb('160x120#').url), photo, :rel => "shadowbox[latest];content=#{image_path(photo.image.watermark('960x720').url)};player=img", :title => photo.caption %>
+        <%= link_to image_tag(photo.image.thumb('172x129#').url), photo, :rel => "shadowbox[latest];content=#{image_path(photo.image.watermark('960x720').url)};player=img", :title => photo.caption %>
       <% end %>
   <% end %>
 

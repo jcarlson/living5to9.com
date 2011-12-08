@@ -4,7 +4,7 @@
     <head>
       <title>living5to9.com</title>
       
-      <link href='http://fonts.googleapis.com/css?family=Architects+Daughter|Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Architects+Daughter|Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
       <%= stylesheet_link_tag :application %>
       <%= stylesheet_link_tag params[:controller] %>
@@ -19,7 +19,9 @@
 
           <div class="header">
 
-            <h1><%= link_to 'Living5to9.com', root_path %></h1>
+            <div class="title">
+              <h1><%= link_to 'Living5to9.com', root_path %></h1>
+            </div>
 
             <div class="navigation">
               <%= image_tag 'masthead.jpg' unless photopage? %>
@@ -27,7 +29,7 @@
             </div>
 
           </div>
-
+          
           <div class="body">
             <%= yield %>
           </div>
@@ -39,6 +41,10 @@
           <%= javascript_include_tag :application %>
           <%= javascript_include_tag params[:controller] %>
 
+        </div>
+        
+        <div class="copyright">
+          <p>Powered by blood, sweat, and a lot of caffeine.<br/>&copy; <%= Date.today.year %> Aptitude Studios. All rights reserved.</p>
         </div>
 
     </body>

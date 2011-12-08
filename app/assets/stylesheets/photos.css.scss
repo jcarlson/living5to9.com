@@ -2,6 +2,7 @@
 //= require shadowbox
 
 @import 'definitions';
+@import 'mixins';
 
 .photos {
     .header {
@@ -10,7 +11,6 @@
         
         .navigation {
             ul {
-                background: none;
                 position: relative;
             }
         }
@@ -22,9 +22,11 @@
 
         .collection {
 
+            margin: 50px;
             text-align: center;
 
             a img {
+                border: none;
                 opacity: 0.9;
                 &:hover {
                     opacity: 1.0;
@@ -32,10 +34,11 @@
             }
 
             .photo {
+                border: 1px solid #3399cc;
                 display: inline-block;
-                height: 120px;
-                margin: 2px 1px;
-                width: 160px;
+                height: 129px;
+                margin: 0px;
+                width: 172px;
             }
 
         }

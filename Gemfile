@@ -42,6 +42,9 @@ gem 'redcarpet'
 # Draper, for model decoration
 gem 'draper'
 
+# My custom Rails::Engine for handling slugs
+gem 'slug-engine'
+
 # Asset pipeline support
 group :assets do
   gem 'coffee-rails', '~> 3.1.0'

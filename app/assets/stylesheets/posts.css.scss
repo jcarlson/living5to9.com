@@ -2,26 +2,33 @@
 
 .posts {
   
-  h2.title {
-    font-size: 2.2em;
-    margin-bottom: 0;
-  }
-  
-  p.published_on {
-    margin-top: 0;
-  }
-  
-  .content {
+  .post {
+    padding: 50px;
     
-    color: darken($text, 25%);
-    margin: 40px 20px;
-    
-    h1 { font-size: 2.0em; }
-    h2 { font-size: 1.8em; }
-    h3 { font-size: 1.4em; }
-    h4 { font-size: 1.2em; }
-    h5 { font-size: 1.0em; }
-    h6 { font-size: 0.8em; }
-  }
+    h2.title {
+      font-size: 2.2em;
+      margin: 0;
+    }
+
+    p.published_on {
+      color: #999999;
+      float: left;
+      margin-top: 0;
+    }
+
+    .content {
+
+      clear: both;
+      margin: 40px 0;
+
+      h1 { font-size: 2.0em; }
+      h2 { font-size: 1.8em; }
+      h3 { font-size: 1.4em; }
+      h4 { font-size: 1.2em; }
+      h5 { font-size: 1.0em; }
+      h6 { font-size: 0.8em; }
+    }
+
+  }  
   
 }
