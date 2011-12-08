@@ -46,12 +46,31 @@ a {
 
         @include rounded-top;
 
-        h1 {
-            font-size: 3em;
-            margin: 0;
-            padding: 30px;
-        }
+        .title {
+          
+          background-color: #1d1d1d;
+          
+          /* Safari 4-5, Chrome 1-9 */
+          background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1d1d1d), to(#3c3c3c));
+          /* Safari 5.1, Chrome 10+ */
+          background: -webkit-linear-gradient(top, #3c3c3c, #1d1d1d);
+          /* Firefox 3.6+ */
+          background: -moz-linear-gradient(top, #3c3c3c, #1d1d1d);
+          /* IE 10 */
+          background: -ms-linear-gradient(top, #3c3c3c, #1d1d1d);
+          /* Opera 11.10+ */
+          background: -o-linear-gradient(top, #3c3c3c, #1d1d1d);
+          
+          @include rounded-top;
+          
+          h1 {
+              font-size: 3em;
+              margin: 0;
+              padding: 30px;
+          }
 
+        }
+        
         img {
             display: block;
         }
